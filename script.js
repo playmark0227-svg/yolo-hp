@@ -4,45 +4,35 @@
 
 // 会場データ（↓ここに代表者名と会社HPを入れてください）
 const venues = {
-    sapporo:   { name: '札幌会場',   rep: '代表 田中太郎',   url: '#' },
-    asahikawa: { name: '旭川会場',   rep: '代表 佐藤花子',   url: '#' },
-    hakodate:  { name: '函館会場',   rep: '代表 鈴木一郎',   url: '#' },
-    kushiro:   { name: '釧路会場',   rep: '代表 高橋美咲',   url: '#' },
-    obihiro:   { name: '帯広会場',   rep: '代表 渡辺健太',   url: '#' },
-    kitami:    { name: '北見会場',   rep: '代表 伊藤由美',   url: '#' },
-    tomakomai: { name: '苫小牧会場', rep: '代表 山田翔太',   url: '#' },
+    sapporo:   { name: '札幌会場',   rep: '代表 田中太郎', url: '#' },
+    asahikawa: { name: '旭川会場',   rep: '代表 佐藤花子', url: '#' },
+    hakodate:  { name: '函館会場',   rep: '代表 鈴木一郎', url: '#' },
+    kushiro:   { name: '釧路会場',   rep: '代表 高橋美咲', url: '#' },
+    obihiro:   { name: '帯広会場',   rep: '代表 渡辺健太', url: '#' },
+    kitami:    { name: '北見会場',   rep: '代表 伊藤由美', url: '#' },
+    tomakomai: { name: '苫小牧会場', rep: '代表 山田翔太', url: '#' },
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    initNav();
-    initChapters();
-    initMap();
-    initReveal();
     initMobileNav();
+    initMap();
     initContactForm();
+    initSmoothScroll();
+    initReveal();
 });
 
-// ---- nav scroll state ----
-function initNav() {
-    const nav = document.getElementById('nav');
-    if (!nav) return;
-    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 40);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-}
+// ---- mobile nav ----
+function initMobileNav() {
+    const toggle = document.getElementById('navToggle');
+    const nav = document.querySelector('.site-nav');
+    if (!toggle || !nav) return;
 
-// ---- chapter tab switching ----
-function initChapters() {
-    const btns = document.querySelectorAll('.chapter-nav__item');
-    const chapters = document.querySelectorAll('.chapter');
-
-    btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = btn.dataset.tab;
-            btns.forEach(b => b.classList.toggle('is-active', b === btn));
-            chapters.forEach(c => c.classList.toggle('is-active', c.dataset.chapter === id));
-        });
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('is-open');
     });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+    }));
 }
 
 // ---- Hokkaido venue map ----
@@ -71,44 +61,10 @@ function initMap() {
 
 function placeTip(e, tip, wrap) {
     const r = wrap.getBoundingClientRect();
-    const x = e.clientX - r.left + 16;
-    const y = e.clientY - r.top - 60;
+    const x = e.clientX - r.left + 18;
+    const y = e.clientY - r.top - 70;
     tip.style.left = x + 'px';
     tip.style.top = y + 'px';
-}
-
-// ---- scroll reveal ----
-function initReveal() {
-    const targets = document.querySelectorAll(
-        '.hero__body, .section-head, .chapter__aside, .chapter__feature, .about__quote, .about__body, .pillar, .team-card, .contact__note, .contact__form'
-    );
-    targets.forEach(el => el.classList.add('reveal'));
-
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('is-in');
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-
-    targets.forEach(el => io.observe(el));
-}
-
-// ---- mobile nav ----
-function initMobileNav() {
-    const toggle = document.getElementById('navToggle');
-    const links = document.querySelector('.nav__links');
-    if (!toggle || !links) return;
-
-    toggle.addEventListener('click', () => {
-        toggle.classList.toggle('is-open');
-        links.classList.toggle('is-open');
-        document.body.style.overflow = links.classList.contains('is-open') ? 'hidden' : '';
-    });
-    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        toggle.classList.remove('is-open');
-        links.classList.remove('is-open');
-        document.body.style.overflow = '';
-    }));
 }
 
 // ---- contact form (placeholder handler) ----
@@ -119,8 +75,43 @@ function initContactForm() {
         e.preventDefault();
         const btn = form.querySelector('.form__submit');
         const orig = btn.innerHTML;
-        btn.innerHTML = '送りました &nbsp;✓';
-        btn.style.background = 'var(--matcha-deep)';
-        setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; form.reset(); }, 2600);
+        btn.innerHTML = '送信しました ✓';
+        btn.style.background = 'var(--matcha)';
+        setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = '';
+            form.reset();
+        }, 2600);
     });
+}
+
+// ---- smooth scroll for anchor links ----
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (href === '#' || href.length < 2) return;
+        a.addEventListener('click', (e) => {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+}
+
+// ---- scroll reveal ----
+function initReveal() {
+    const targets = document.querySelectorAll(
+        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .cta-band__inner'
+    );
+    targets.forEach(el => el.classList.add('reveal'));
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('is-in');
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    targets.forEach(el => io.observe(el));
 }
