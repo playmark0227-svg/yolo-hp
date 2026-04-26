@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社YOLO — 人と、人を結ぶ。</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Klee+One:wght@400;600&family=Noto+Serif+JP:wght@200;300;400;500;600&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============ NAV ============ -->
+    <header class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#top" class="nav__brand">
+                <span class="nav__brand-mark">YOLO</span>
+                <span class="nav__brand-meta">株式会社 ／ 北海道</span>
+            </a>
+            <nav class="nav__links">
+                <a href="#chapters"><em>01</em> 事業</a>
+                <a href="#about"><em>02</em> 会社</a>
+                <a href="#team"><em>03</em> 人</a>
+                <a href="#contact"><em>04</em> 連絡</a>
+            </nav>
+            <button class="nav__toggle" id="navToggle" aria-label="menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+        <div class="hero__grain"></div>
+
+        <div class="hero__stamp">
+            <span class="stamp__line">— No. 2024 —</span>
+            <span class="stamp__meta">Est. Hokkaido</span>
+        </div>
+
+        <aside class="hero__vertical" aria-hidden="true">
+            <span>Your Only Life Opportunity</span>
+        </aside>
+
+        <div class="hero__body">
+            <p class="hero__eyebrow">
+                <span class="dot"></span>
+                北の大地から、新しいビジネスのかたちを。
+            </p>
+            <h1 class="hero__headline">
+                人と、<br>
+                人を<em>結ぶ</em>。
+            </h1>
+            <p class="hero__lede">
+                出会いが、仕事を変え、<br>
+                仕事が、人生を変えていく。
+            </p>
+            <div class="hero__divider">
+                <span class="divider__dash"></span>
+                <span class="divider__circle"></span>
+                <span class="divider__dash"></span>
+            </div>
+            <a href="#chapters" class="hero__cta">
+                <span>事業を読む</span>
+                <span class="cta__arrow">↓</span>
+            </a>
+        </div>
+
+        <div class="hero__corner hero__corner--tl">
+            <span>株式会社YOLO</span>
+            <span>2024 — &nbsp;</span>
+        </div>
+        <div class="hero__corner hero__corner--br">
+            <span>Read on &nbsp;↓</span>
+        </div>
+    </section>
+
+    <!-- ============ CHAPTERS / SERVICES ============ -->
+    <section class="chapters" id="chapters">
+        <header class="section-head">
+            <span class="section-head__num">— 其の壱 —</span>
+            <h2 class="section-head__title">四つの、つながり。</h2>
+            <p class="section-head__sub">Our Business</p>
+        </header>
+
+        <nav class="chapter-nav">
+            <button class="chapter-nav__item is-active" data-tab="yc">
+                <span class="ch__num">一</span>
+                <span class="ch__name">YC</span>
+                <span class="ch__sub">ヤングクラブ</span>
+            </button>
+            <button class="chapter-nav__item" data-tab="royal">
+                <span class="ch__num">二</span>
+                <span class="ch__name">ROYAL</span>
+                <span class="ch__sub">プレミアム網</span>
+            </button>
+            <button class="chapter-nav__item" data-tab="class">
+                <span class="ch__num">三</span>
+                <span class="ch__name">CLASS</span>
+                <span class="ch__sub">学びの場</span>
+            </button>
+            <button class="chapter-nav__item" data-tab="event">
+                <span class="ch__num">四</span>
+                <span class="ch__name">EVENT</span>
+                <span class="ch__sub">催事相談</span>
+            </button>
+        </nav>
+
+        <!-- ===== YC ===== -->
+        <article class="chapter is-active" data-chapter="yc">
+            <div class="chapter__spread">
+                <aside class="chapter__aside">
+                    <span class="chapter__chapno">Chapter 一</span>
+                    <h3 class="chapter__title">
+                        YC<br>
+                        <small>ヤングクラブ</small>
+                    </h3>
+                    <p class="chapter__lede">
+                        毎月一度、道内七カ所で。<br>
+                        業種を超えたつながりが、<br>
+                        あたらしい仕事を連れてくる。
+                    </p>
+
+                    <dl class="facts">
+                        <div class="facts__row">
+                            <dt>会場</dt>
+                            <dd><span class="num">7</span><small>カ所</small></dd>
+                        </div>
+                        <div class="facts__row">
+                            <dt>頻度</dt>
+                            <dd><span class="num">月1</span><small>回</small></dd>
+                        </div>
+                        <div class="facts__row">
+                            <dt>規模</dt>
+                            <dd><span class="num">全道</span><small>展開</small></dd>
+                        </div>
+                    </dl>
+
+                    <p class="chapter__foot">
+                        <em>※</em> 守成クラブ形式の交流会組織です。
+                    </p>
+                </aside>
+
+                <div class="chapter__feature">
+                    <div class="feature-head">
+                        <span class="feature-head__mark">HOKKAIDO MAP</span>
+                        <h4 class="feature-head__title">全道、七つの拠点。</h4>
+                        <p class="feature-head__note">
+                            星をなぞって、<br>
+                            各会場の代表企業へ。
+                        </p>
+                    </div>
+
+                    <div class="hokkaido-map-container">
+                        <img src="hokkaido-prefecture_shima_map_3D_outline.png" alt="北海道マップ" class="hokkaido-map-img">
+
+                        <a href="#" class="venue-pin" data-venue="sapporo" target="_blank" rel="noopener" style="left: 24%; top: 49%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">札幌</span>
+                        </a>
+                        <a href="#" class="venue-pin" data-venue="asahikawa" target="_blank" rel="noopener" style="left: 30%; top: 30%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">旭川</span>
+                        </a>
+                        <a href="#" class="venue-pin" data-venue="hakodate" target="_blank" rel="noopener" style="left: 11%; top: 76%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">函館</span>
+                        </a>
+                        <a href="#" class="venue-pin" data-venue="kushiro" target="_blank" rel="noopener" style="left: 52%; top: 52%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">釧路</span>
+                        </a>
+                        <a href="#" class="venue-pin" data-venue="obihiro" target="_blank" rel="noopener" style="left: 40%; top: 54%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">帯広</span>
+                        </a>
+                        <a href="#" class="venue-pin" data-venue="kitami" target="_blank" rel="noopener" style="left: 48%; top: 34%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">北見</span>
+                        </a>
+                        <a href="#" class="venue-pin" data-venue="tomakomai" target="_blank" rel="noopener" style="left: 30%; top: 59%;">
+                            <span class="pin-dot"><span class="pin-inner"></span></span>
+                            <span class="pin-label">苫小牧</span>
+                        </a>
+
+                        <div class="venue-tooltip" id="venueTooltip">
+                            <div class="tt__venue"></div>
+                            <div class="tt__rep"></div>
+                            <div class="tt__hint">代表会社HPへ &rarr;</div>
+                        </div>
+                    </div>
+
+                    <ol class="venue-index">
+                        <li><span>一</span>札幌</li>
+                        <li><span>二</span>旭川</li>
+                        <li><span>三</span>函館</li>
+                        <li><span>四</span>釧路</li>
+                        <li><span>五</span>帯広</li>
+                        <li><span>六</span>北見</li>
+                        <li><span>七</span>苫小牧</li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== ROYAL ===== -->
+        <article class="chapter" data-chapter="royal">
+            <div class="chapter__spread">
+                <aside class="chapter__aside">
+                    <span class="chapter__chapno">Chapter 二</span>
+                    <h3 class="chapter__title">
+                        ROYAL<br>
+                        <small>プレミアムネットワーク</small>
+                    </h3>
+                    <p class="chapter__lede">
+                        経営者のための、<br>
+                        すこし閉じられた集まり。<br>
+                        一歩深い信頼から始まる商いを。
+                    </p>
+                    <p class="chapter__foot">
+                        <em>※</em> 審査制・招待制での運営。
+                    </p>
+                </aside>
+                <div class="chapter__feature chapter__feature--list">
+                    <ol class="tenet-list">
+                        <li>
+                            <span class="tenet__no">i.</span>
+                            <div>
+                                <h5>限定のメンバーシップ</h5>
+                                <p>審査を通じて、ふさわしい方々だけで形成される枠組み。人数ではなく質で、関係の濃度を担保します。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tenet__no">ii.</span>
+                            <div>
+                                <h5>経営者のための対話</h5>
+                                <p>少人数の車座で交わす、本音のセッション。肩書きを置いて、経営そのものを語り合える場所。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tenet__no">iii.</span>
+                            <div>
+                                <h5>信頼のマッチング</h5>
+                                <p>顔の見える関係のなかから生まれる協業。紹介の一言が、次の事業の起点になります。</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== CLASS ===== -->
+        <article class="chapter" data-chapter="class">
+            <div class="chapter__spread">
+                <aside class="chapter__aside">
+                    <span class="chapter__chapno">Chapter 三</span>
+                    <h3 class="chapter__title">
+                        CLASS<br>
+                        <small>実践のビジネス講座</small>
+                    </h3>
+                    <p class="chapter__lede">
+                        明日から使える知恵を、<br>
+                        第一線で働く講師から。<br>
+                        学び、動き、また学ぶ。
+                    </p>
+                    <p class="chapter__foot">
+                        <em>※</em> 期別制・少人数ワークショップ形式。
+                    </p>
+                </aside>
+                <div class="chapter__feature chapter__feature--list">
+                    <ol class="tenet-list">
+                        <li>
+                            <span class="tenet__no">i.</span>
+                            <div>
+                                <h5>実践のカリキュラム</h5>
+                                <p>現場で使えることだけを、現場を知る者から。翌日の打合せから変わる具体を持ち帰れる設計です。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tenet__no">ii.</span>
+                            <div>
+                                <h5>第一線からの講師陣</h5>
+                                <p>各分野で手を動かし続けるプロが直接指導。失敗と成功の両面から、生きた事例が届きます。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tenet__no">iii.</span>
+                            <div>
+                                <h5>学び合いの輪</h5>
+                                <p>同期生のつながりが、講座の後も続く資産になる。教室の外にこそ、本当の学びがあります。</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+        <!-- ===== EVENT ===== -->
+        <article class="chapter" data-chapter="event">
+            <div class="chapter__spread">
+                <aside class="chapter__aside">
+                    <span class="chapter__chapno">Chapter 四</span>
+                    <h3 class="chapter__title">
+                        EVENT<br>
+                        <small>イベントコンサル</small>
+                    </h3>
+                    <p class="chapter__lede">
+                        「やってみたい」を、<br>
+                        かたちにする伴走を。<br>
+                        企画から運営まで、ひと続きで。
+                    </p>
+                    <p class="chapter__foot">
+                        <em>※</em> はじめての開催でも、ワンストップで。
+                    </p>
+                </aside>
+                <div class="chapter__feature chapter__feature--list">
+                    <ol class="tenet-list">
+                        <li>
+                            <span class="tenet__no">i.</span>
+                            <div>
+                                <h5>企画の立案</h5>
+                                <p>目的を伺い、届けたい相手を想像し、核となる一言を決めるところから。ぶれない軸を一緒につくります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tenet__no">ii.</span>
+                            <div>
+                                <h5>会場と集客</h5>
+                                <p>規模・予算・雰囲気に合う場所を押さえ、届くべき人へ届く導線を設計。告知物の制作も承ります。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="tenet__no">iii.</span>
+                            <div>
+                                <h5>当日の運営</h5>
+                                <p>進行台本、音響、受付、撮影まで。主催者は、お客様の顔を見ることだけに集中してください。</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" id="about">
+        <header class="section-head">
+            <span class="section-head__num">— 其の弐 —</span>
+            <h2 class="section-head__title">私たちの、姿勢。</h2>
+            <p class="section-head__sub">About YOLO</p>
+        </header>
+
+        <div class="about__quote">
+            <span class="quote__open">「</span>
+            <p>
+                会いたい人に会えた日は、<br>
+                仕事も人生も、すこしやさしくなる。
+            </p>
+            <span class="quote__close">」</span>
+            <span class="quote__attr">— 代表</span>
+        </div>
+
+        <div class="about__body">
+            <div class="about__text">
+                <p>
+                    YOLO — Your Only Life Opportunity。
+                    一度きりの人生に訪れる、その一度きりの出会いを、<br>
+                    わたしたちは真剣に扱いたいと思っています。
+                </p>
+                <p>
+                    月に一度の集まりも、十年続く関係の入り口になる。<br>
+                    そんな出会いを、北海道という土地から、丁寧に育てていきます。
+                </p>
+            </div>
+
+            <dl class="about__meta">
+                <div><dt>会社名</dt><dd>株式会社YOLO</dd></div>
+                <div><dt>所在地</dt><dd>北海道</dd></div>
+                <div><dt>事業</dt><dd>ビジネス交流事業<br>イベントコンサルティング</dd></div>
+                <div><dt>設立</dt><dd>二〇二四年</dd></div>
+            </dl>
+        </div>
+
+        <div class="pillars">
+            <div class="pillar">
+                <span class="pillar__num">i</span>
+                <h4>結ぶ</h4>
+                <p>全道の働く人を、<br>線でつなぐ。</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar__num">ii</span>
+                <h4>育てる</h4>
+                <p>ともに学び、<br>ともに育ちあう。</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar__num">iii</span>
+                <h4>仕掛ける</h4>
+                <p>新しい商いを、<br>北から起こす。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ TEAM ============ -->
+    <section class="team" id="team">
+        <header class="section-head">
+            <span class="section-head__num">— 其の参 —</span>
+            <h2 class="section-head__title">つくる、人たち。</h2>
+            <p class="section-head__sub">People</p>
+        </header>
+
+        <ul class="team-list">
+            <li class="team-card team-card--lead">
+                <div class="team-card__photo">
+                    <div class="photo__placeholder">
+                        <span>肖像</span>
+                        <small>coming soon</small>
+                    </div>
+                </div>
+                <div class="team-card__text">
+                    <span class="team-card__role">代表取締役 / CEO</span>
+                    <h4 class="team-card__name">—</h4>
+                    <p class="team-card__bio">
+                        北海道生まれ。人と人をつなぐ仕事を通して、<br>
+                        地域の商いを元気にしたい。
+                    </p>
+                </div>
+            </li>
+            <li class="team-card">
+                <div class="team-card__photo team-card__photo--small">
+                    <div class="photo__placeholder"><span>肖像</span></div>
+                </div>
+                <div class="team-card__text">
+                    <span class="team-card__role">取締役 / Director</span>
+                    <h4 class="team-card__name">—</h4>
+                </div>
+            </li>
+            <li class="team-card">
+                <div class="team-card__photo team-card__photo--small">
+                    <div class="photo__placeholder"><span>肖像</span></div>
+                </div>
+                <div class="team-card__text">
+                    <span class="team-card__role">メンバー / Member</span>
+                    <h4 class="team-card__name">—</h4>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact">
+        <header class="section-head">
+            <span class="section-head__num">— 其の四 —</span>
+            <h2 class="section-head__title">お便り、ください。</h2>
+            <p class="section-head__sub">Contact</p>
+        </header>
+
+        <div class="contact__body">
+            <div class="contact__note">
+                <p>
+                    サービスのこと、イベントのこと、<br>
+                    あるいは、ただの雑談でも構いません。<br>
+                    気負わず、お声がけください。
+                </p>
+                <div class="contact__method">
+                    <span class="method__label">Mail</span>
+                    <span class="method__value">info@yolo-inc.jp</span>
+                </div>
+            </div>
+
+            <form class="contact__form" id="contactForm">
+                <div class="field">
+                    <label>お名前</label>
+                    <input type="text" required>
+                </div>
+                <div class="field">
+                    <label>メール</label>
+                    <input type="email" required>
+                </div>
+                <div class="field">
+                    <label>ご用件</label>
+                    <select required>
+                        <option value="" disabled selected>選んでください</option>
+                        <option value="yc">YCについて</option>
+                        <option value="royal">ROYALについて</option>
+                        <option value="class">CLASSについて</option>
+                        <option value="event">イベント相談</option>
+                        <option value="other">その他</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>ご自由に</label>
+                    <textarea rows="5" required></textarea>
+                </div>
+                <button type="submit" class="form__submit">
+                    送る <span>→</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="foot">
+        <div class="foot__inner">
+            <div class="foot__brand">
+                <span class="foot__mark">YOLO</span>
+                <span class="foot__tag">Your Only Life Opportunity</span>
+            </div>
+            <nav class="foot__links">
+                <a href="#chapters">事業</a>
+                <a href="#about">会社</a>
+                <a href="#team">人</a>
+                <a href="#contact">連絡</a>
+            </nav>
+            <p class="foot__copy">
+                &copy; 2026 株式会社YOLO &nbsp;·&nbsp; All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
