@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>株式会社YOLO — 北海道の経営者を、結ぶ。</title>
-    <meta name="description" content="株式会社YOLOは、北海道の経営者・事業者をつなぐビジネスコミュニティ「YC（ヤングクラブ）」を主宰。全道7拠点で毎月開催する商談会と、プレミアム経営者会員制ROYAL、実践型ビジネス講座CLASS、イベントコンサルティングを提供します。">
+    <title>株式会社YOLO ── 北海道の経営者を、結ぶ。</title>
+    <meta name="description" content="株式会社YOLOは、各種イベントの運営・企画、ならびにイベントコンサルティングを行う会社です。北海道発、出会いから商いを生み出すビジネスコミュニティを運営しています。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,15 +18,15 @@
     <header class="site-header" id="siteHeader">
         <div class="site-header__inner container">
             <a href="#top" class="site-header__brand">
+                <!-- TODO: 正式ロゴ画像に差し替え（クライアント提供待ち） -->
                 <span class="site-header__logo">YOLO</span>
                 <span class="site-header__sub">株式会社YOLO ／ 北海道</span>
             </a>
             <nav class="site-nav">
                 <ul>
                     <li><a href="#top">ホーム</a></li>
-                    <li><a href="#yc-section">YC（ヤングクラブ）</a></li>
-                    <li><a href="#services">サービス</a></li>
                     <li><a href="#about">YOLOとは</a></li>
+                    <li><a href="#services">事業紹介</a></li>
                     <li><a href="#team">役員紹介</a></li>
                     <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
@@ -40,9 +40,9 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="top">
         <div class="hero__grid">
-            <a href="#yc-section" class="hero__panel hero__panel--left">
+            <a href="yc/" class="hero__panel hero__panel--left" target="_self">
                 <div class="hero__panel-overlay">
-                    <p class="hero__panel-eyebrow">YOUR ONLY LIFE</p>
+                    <p class="hero__panel-eyebrow">YOU ONLY LIVE ONCE</p>
                     <h2 class="hero__panel-title">人と、人を、<br>結ぶ。</h2>
                     <p class="hero__panel-lead">北海道全7拠点。毎月の出会いが、<br>あたらしい仕事を連れてくる。</p>
                     <span class="hero__panel-cta">YCをみる →</span>
@@ -50,10 +50,10 @@
             </a>
             <a href="#services" class="hero__panel hero__panel--right">
                 <div class="hero__panel-overlay">
-                    <p class="hero__panel-eyebrow">OPPORTUNITY</p>
+                    <p class="hero__panel-eyebrow">OUR BUSINESS</p>
                     <h2 class="hero__panel-title">商いを、<br>育てる。</h2>
-                    <p class="hero__panel-lead">経営者会・ビジネス講座・イベント。<br>事業を盛り上げる4つの仕組み。</p>
-                    <span class="hero__panel-cta">サービスをみる →</span>
+                    <p class="hero__panel-lead">経営者会・ビジネス講座・イベント。<br>YOLOが手がける4つの事業。</p>
+                    <span class="hero__panel-cta">事業紹介をみる →</span>
                 </div>
             </a>
         </div>
@@ -77,90 +77,24 @@
         </div>
     </section>
 
-    <!-- ============ YC FEATURE ============ -->
-    <section class="yc" id="yc-section">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-title__deco section-title__deco--l"></span>
-                ＹＣ ヤングクラブ
-                <span class="section-title__deco section-title__deco--r"></span>
-            </h2>
-            <p class="section-sub">YC ── Young Club / 北海道全道7拠点で開催する経営者の商談会</p>
-
-            <div class="yc__intro">
-                <div class="yc__intro-text">
-                    <p class="lead">
-                        北海道のあちこちで、<br>
-                        毎月一度、経営者が集まる場所がある。
-                    </p>
-                    <p>
-                        ＹＣ（ヤングクラブ）は、株式会社YOLOが主宰する経営者・事業者のための商談コミュニティです。
-                        札幌から北見・釧路まで、全道7拠点で同時開催。業種を超えた経営者同士が、月に一度、本気の商売の場を共有します。
-                    </p>
-                    <p>
-                        「自分たちの市場は、自分たちでつくる。」<br>
-                        ＹＣは、その想いを掲げる経営者の輪を北海道全体に広げる集会です。
-                    </p>
-                    <p class="yc__pill"><span>毎月開催・全7拠点・累計参加企業 600社以上</span></p>
-                </div>
-                <div class="yc__intro-stats">
-                    <div class="stat"><span class="stat__num">7</span><span class="stat__label">拠点</span></div>
-                    <div class="stat"><span class="stat__num">月1</span><span class="stat__label">開催</span></div>
-                    <div class="stat"><span class="stat__num">全道</span><span class="stat__label">展開</span></div>
-                    <div class="stat"><span class="stat__num">600+</span><span class="stat__label">企業</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Map area -->
-        <div class="yc-map-band">
-            <div class="container">
-                <h3 class="section-title section-title--sub">
-                    <span class="section-title__deco section-title__deco--l"></span>
-                    全道、七つの拠点
-                    <span class="section-title__deco section-title__deco--r"></span>
-                </h3>
-                <p class="section-sub">星をなぞって、各会場の代表企業へ</p>
-
-                <div class="map-wrap">
-                    <div class="hokkaido-map-container">
-                        <img src="hokkaido-prefecture_shima_map_3D_outline.png" alt="北海道マップ" class="hokkaido-base">
-
-                        <a class="venue-pin" data-venue="sapporo"   style="left:23%; top:60%;" href="#"><span class="pin__dot"></span><span class="pin__label">札幌</span></a>
-                        <a class="venue-pin" data-venue="asahikawa" style="left:38%; top:45%;" href="#"><span class="pin__dot"></span><span class="pin__label">旭川</span></a>
-                        <a class="venue-pin" data-venue="hakodate"  style="left:14%; top:74%;" href="#"><span class="pin__dot"></span><span class="pin__label">函館</span></a>
-                        <a class="venue-pin" data-venue="kushiro"   style="left:50%; top:62%;" href="#"><span class="pin__dot"></span><span class="pin__label">釧路</span></a>
-                        <a class="venue-pin" data-venue="obihiro"   style="left:39%; top:62%;" href="#"><span class="pin__dot"></span><span class="pin__label">帯広</span></a>
-                        <a class="venue-pin" data-venue="kitami"    style="left:50%; top:38%;" href="#"><span class="pin__dot"></span><span class="pin__label">北見</span></a>
-                        <a class="venue-pin" data-venue="tomakomai" style="left:28%; top:64%;" href="#"><span class="pin__dot"></span><span class="pin__label">苫小牧</span></a>
-
-                        <div class="venue-tooltip" id="venueTooltip" aria-hidden="true">
-                            <div class="tt__inner">
-                                <span class="tt__venue"></span>
-                                <span class="tt__rep"></span>
-                                <span class="tt__cta">代表企業HPへ →</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="venue-list">
-                        <h4>会場一覧</h4>
-                        <ul>
-                            <li><span class="vno">01</span><span class="vname">札幌会場</span><span class="vrep">代表 田中太郎</span></li>
-                            <li><span class="vno">02</span><span class="vname">旭川会場</span><span class="vrep">代表 佐藤花子</span></li>
-                            <li><span class="vno">03</span><span class="vname">函館会場</span><span class="vrep">代表 鈴木一郎</span></li>
-                            <li><span class="vno">04</span><span class="vname">釧路会場</span><span class="vrep">代表 高橋美咲</span></li>
-                            <li><span class="vno">05</span><span class="vname">帯広会場</span><span class="vrep">代表 渡辺健太</span></li>
-                            <li><span class="vno">06</span><span class="vname">北見会場</span><span class="vrep">代表 伊藤由美</span></li>
-                            <li><span class="vno">07</span><span class="vname">苫小牧会場</span><span class="vrep">代表 山田翔太</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- ============ ABOUT INTRO (ヒーロー直下) ============ -->
+    <!-- 仕様: ファーストビュー直下は「株式会社YOLOとは何の会社か」を短く伝える -->
+    <section class="intro-band" id="about-intro">
+        <div class="container intro-band__inner">
+            <p class="intro-band__eyebrow">— ABOUT YOLO —</p>
+            <h2 class="intro-band__title">株式会社YOLOとは</h2>
+            <p class="intro-band__lead">
+                各種イベントの運営・企画、ならびに<br>
+                イベントコンサルティングを行う会社です。
+            </p>
+            <p class="intro-band__sub">
+                北海道を拠点に、人と人がつながる場所を仕掛け、<br>
+                そこから新しい商いを生み出す ── それが、YOLOの仕事です。
+            </p>
         </div>
     </section>
 
-    <!-- ============ SERVICES BANNERS ============ -->
+    <!-- ============ SERVICES (4軸) ============ -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">
@@ -168,35 +102,47 @@
                 YOLOの事業
                 <span class="section-title__deco section-title__deco--r"></span>
             </h2>
-            <p class="section-sub">Our Business ── 商売を、人を、北海道を、強くする4つの取り組み</p>
+            <p class="section-sub">Our Business ── 人と商いをつなぐ、4つの取り組み</p>
 
             <div class="service-grid">
-                <a href="#yc-section" class="service-card service-card--yc">
-                    <div class="service-card__photo"></div>
+                <a href="yc/" class="service-card service-card--yc" target="_self">
+                    <div class="service-card__photo">
+                        <!-- TODO: 画像差し替え（クライアント提供の実写イメージへ） -->
+                    </div>
                     <div class="service-card__title">
                         <h3>YC <small>ヤングクラブ</small></h3>
-                        <span>毎月の経営者商談会</span>
+                        <!-- TODO: キャッチコピー差し替え（クライアント提供待ち） -->
+                        <span>北海道全道7拠点で開催する経営者の朝活会</span>
                     </div>
                 </a>
-                <a href="#" class="service-card service-card--royal">
-                    <div class="service-card__photo"></div>
+                <a href="royal/" class="service-card service-card--royal" target="_self">
+                    <div class="service-card__photo">
+                        <!-- TODO: 画像差し替え（クライアント提供の実写イメージへ） -->
+                    </div>
                     <div class="service-card__title">
-                        <h3>ROYAL <small>プレミアム会員</small></h3>
-                        <span>経営者のための限定ネットワーク</span>
+                        <h3>ROYAL <small>ロイヤル</small></h3>
+                        <!-- TODO: キャッチコピー差し替え（クライアント提供待ち） -->
+                        <span>準備中 ── 経営者のためのプレミアムコミュニティ</span>
                     </div>
                 </a>
-                <a href="#" class="service-card service-card--class">
-                    <div class="service-card__photo"></div>
+                <a href="class/" class="service-card service-card--class" target="_self">
+                    <div class="service-card__photo">
+                        <!-- TODO: 画像差し替え（クライアント提供の実写イメージへ） -->
+                    </div>
                     <div class="service-card__title">
-                        <h3>CLASS <small>ビジネス講座</small></h3>
-                        <span>第一線の講師から学ぶ実践塾</span>
+                        <h3>Class <small>クラス</small></h3>
+                        <!-- TODO: キャッチコピー差し替え（クライアント提供待ち） -->
+                        <span>準備中 ── 第一線から学ぶ実践ビジネス講座</span>
                     </div>
                 </a>
-                <a href="#" class="service-card service-card--event">
-                    <div class="service-card__photo"></div>
+                <a href="consul/" class="service-card service-card--event" target="_self">
+                    <div class="service-card__photo">
+                        <!-- TODO: 画像差し替え（クライアント提供の実写イメージへ） -->
+                    </div>
                     <div class="service-card__title">
-                        <h3>EVENT <small>イベントコンサル</small></h3>
-                        <span>企画・集客・運営を一気通貫で</span>
+                        <h3>CONSUL <small>イベントコンサル</small></h3>
+                        <!-- TODO: キャッチコピー差し替え（クライアント提供待ち） -->
+                        <span>イベント運営・企画のコンサルティング</span>
                     </div>
                 </a>
             </div>
@@ -209,11 +155,11 @@
             <p class="slogan-band__eyebrow">— MESSAGE —</p>
             <p class="slogan-band__lead">いい人と組めば、<br>商いは、もっと面白い。</p>
             <span class="slogan-band__rule" aria-hidden="true"></span>
-            <p class="slogan-band__sub">YOLO ── Your Only Life Opportunity.<br>一度きりの人生だから、本気で組める仲間を、北海道で。</p>
+            <p class="slogan-band__sub">YOLO ── You Only Live Once.<br>人生は一度きり。本気で組める仲間と、北海道で。</p>
         </div>
     </section>
 
-    <!-- ============ ABOUT ============ -->
+    <!-- ============ ABOUT (詳細) ============ -->
     <section class="about" id="about">
         <div class="container">
             <h2 class="section-title">
@@ -233,7 +179,13 @@
                     </p>
 
                     <p>
-                        YOLO ── Your Only Life Opportunity. 一度きりの人生に訪れる、その一度きりの出会いを、わたしたちは真剣に扱いたいと思っています。
+                        <strong>YOLO</strong> ── <em>You Only Live Once</em>（人生は一度きり）。
+                        英語圏で使われる、人生を後悔しないために挑戦しようという意の言葉です。
+                    </p>
+                    <p>
+                        YOLO はその精神を社名に掲げ、北海道の経営者が
+                        <em>Your Only Life Opportunity</em>（人生に一度のチャンス）を
+                        本気で掴むための場をつくっています。
                     </p>
                     <p>
                         月に一度の集まりが、十年続く関係の入り口になる。<br>
@@ -241,7 +193,7 @@
                     </p>
 
                     <ul class="about__pillars">
-                        <li><strong>結ぶ。</strong>全道の働く人々を、縁でつなぐ。</li>
+                        <li><strong>結ぶ。</strong>全道の経営者を、縁でつなぐ。</li>
                         <li><strong>育てる。</strong>ともに学び、ともに育ちあう。</li>
                         <li><strong>仕掛ける。</strong>新しい商いを、北から起こす。</li>
                     </ul>
@@ -251,55 +203,59 @@
                     <h3>会社概要</h3>
                     <table class="company-table">
                         <tr><th>会社名</th><td>株式会社YOLO</td></tr>
+                        <!-- TODO: 所在地の詳細（番地まで）クライアントに確認 -->
                         <tr><th>所在地</th><td>北海道</td></tr>
                         <tr><th>事業内容</th><td>ビジネス交流事業<br>イベントコンサルティング<br>ビジネス講座運営</td></tr>
                         <tr><th>設立</th><td>2024年</td></tr>
-                        <tr><th>代表者</th><td>代表取締役 ── ──</td></tr>
+                        <tr><th>代表者</th><td>代表取締役 松永 悠太郎</td></tr>
                     </table>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============ TEAM ============ -->
+    <!-- ============ TEAM (役員2名) ============ -->
     <section class="team" id="team">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-title__deco section-title__deco--l"></span>
-                YOLOの人
+                役員紹介
                 <span class="section-title__deco section-title__deco--r"></span>
             </h2>
-            <p class="section-sub">Our Members ── 北海道の商いを、つくる人たち</p>
+            <p class="section-sub">Our Officers ── YOLOを動かす2人</p>
 
-            <div class="team-grid">
+            <div class="team-grid team-grid--two">
                 <article class="member-card member-card--lead">
                     <span class="member-card__no">No.01</span>
-                    <div class="member-card__photo"><span>PHOTO</span></div>
+                    <div class="member-card__photo">
+                        <!-- TODO: 実写写真（スーツ着用）差し替え - クライアント提供待ち -->
+                        <span>PHOTO</span>
+                    </div>
                     <div class="member-card__body">
                         <p class="member-card__role">代表取締役 ／ CEO</p>
-                        <h3 class="member-card__name">── ──</h3>
+                        <h3 class="member-card__name">松永 悠太郎</h3>
+                        <!-- TODO: プロフィール文 - クライアント提供待ち -->
                         <p class="member-card__bio">
-                            北海道生まれ。人と人をつなげる仕事を通して、
-                            地域の商いを元気にしたい。
+                            株式会社YOLO 創業者。<br>
+                            北海道の経営者・事業者をつなぐコミュニティを立ち上げ、
+                            全道7拠点で月例のビジネス交流会を運営。
                         </p>
                     </div>
                 </article>
                 <article class="member-card">
                     <span class="member-card__no">No.02</span>
-                    <div class="member-card__photo"><span>PHOTO</span></div>
-                    <div class="member-card__body">
-                        <p class="member-card__role">取締役 ／ Director</p>
-                        <h3 class="member-card__name">── ──</h3>
-                        <p class="member-card__bio">事業推進・拠点開発担当。</p>
+                    <div class="member-card__photo">
+                        <!-- TODO: 実写写真（スーツ着用）差し替え - クライアント提供待ち -->
+                        <span>PHOTO</span>
                     </div>
-                </article>
-                <article class="member-card">
-                    <span class="member-card__no">No.03</span>
-                    <div class="member-card__photo"><span>PHOTO</span></div>
                     <div class="member-card__body">
-                        <p class="member-card__role">メンバー ／ Member</p>
-                        <h3 class="member-card__name">── ──</h3>
-                        <p class="member-card__bio">企画・広報担当。</p>
+                        <p class="member-card__role">執行役員</p>
+                        <!-- TODO: フルネーム - クライアント確認待ち -->
+                        <h3 class="member-card__name">ハブ ── ──</h3>
+                        <!-- TODO: プロフィール文 - クライアント提供待ち -->
+                        <p class="member-card__bio">
+                            事業推進・拠点開発担当。
+                        </p>
                     </div>
                 </article>
             </div>
@@ -331,7 +287,7 @@
                 <div class="contact__info">
                     <h3>株式会社YOLO 事務局</h3>
                     <dl>
-                        <dt>所在地</dt><dd>北海道札幌市</dd>
+                        <dt>所在地</dt><dd>北海道</dd>
                         <dt>電話</dt><dd><a href="tel:0000000000">000-0000-0000</a></dd>
                         <dt>メール</dt><dd><a href="mailto:info@yolo-inc.jp">info@yolo-inc.jp</a></dd>
                         <dt>受付時間</dt><dd>平日 9:00 ─ 18:00</dd>
@@ -361,7 +317,7 @@
                             <option>選んでください</option>
                             <option>YC（ヤングクラブ）について</option>
                             <option>ROYAL について</option>
-                            <option>CLASS について</option>
+                            <option>Class について</option>
                             <option>イベントコンサルについて</option>
                             <option>取材・メディア</option>
                             <option>その他</option>
@@ -385,16 +341,16 @@
         <div class="container site-footer__inner">
             <div class="site-footer__brand">
                 <p class="site-footer__logo">YOLO</p>
-                <p class="site-footer__tag">Your Only Life Opportunity</p>
+                <p class="site-footer__tag">You Only Live Once</p>
                 <p class="site-footer__addr">株式会社YOLO ／ 北海道</p>
             </div>
             <div class="site-footer__nav">
-                <h4>サービス</h4>
+                <h4>事業紹介</h4>
                 <ul>
-                    <li><a href="#yc-section">YC（ヤングクラブ）</a></li>
-                    <li><a href="#services">ROYAL</a></li>
-                    <li><a href="#services">CLASS</a></li>
-                    <li><a href="#services">EVENT</a></li>
+                    <li><a href="yc/">YC（ヤングクラブ）</a></li>
+                    <li><a href="royal/">ROYAL</a></li>
+                    <li><a href="class/">Class</a></li>
+                    <li><a href="consul/">イベントコンサル</a></li>
                 </ul>
             </div>
             <div class="site-footer__nav">

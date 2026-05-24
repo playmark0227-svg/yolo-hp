@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YC（ヤングクラブ） ── 株式会社YOLO</title>
+    <meta name="description" content="YC（ヤングクラブ）は、株式会社YOLOが主宰する経営者・事業者のための朝活会・商談コミュニティ。札幌・旭川・函館・釧路・帯広・北見・苫小牧の全道7拠点で毎月開催。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="is-subpage">
+    <!-- ============ SCROLL PROGRESS ============ -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- ============ HEADER ============ -->
+    <header class="site-header" id="siteHeader">
+        <div class="site-header__inner container">
+            <a href="../" class="site-header__brand">
+                <span class="site-header__logo">YOLO</span>
+                <span class="site-header__sub">株式会社YOLO ／ 北海道</span>
+            </a>
+            <nav class="site-nav">
+                <ul>
+                    <li><a href="../">ホーム</a></li>
+                    <li><a href="../#about">YOLOとは</a></li>
+                    <li><a href="../#services">事業紹介</a></li>
+                    <li><a href="../#team">役員紹介</a></li>
+                    <li><a href="../#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="site-header__toggle" id="navToggle" aria-label="メニュー">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============ BREADCRUMB ============ -->
+    <nav class="breadcrumb" aria-label="パンくず">
+        <div class="container breadcrumb__inner">
+            <a href="../">ホーム</a>
+            <span>›</span>
+            <a href="../#services">事業紹介</a>
+            <span>›</span>
+            <span class="breadcrumb__current">YC（ヤングクラブ）</span>
+        </div>
+    </nav>
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero page-hero--yc" id="top">
+        <div class="container page-hero__inner">
+            <p class="page-hero__eyebrow">SERVICE 01 ── YOUNG CLUB</p>
+            <h1 class="page-hero__title">
+                ＹＣ <small>ヤングクラブ</small>
+            </h1>
+            <p class="page-hero__sub">
+                YC ── Young Club ／ 北海道全道7拠点で開催する経営者の朝活会
+            </p>
+            <p class="page-hero__lead">
+                北海道のあちこちで、毎月一度、<br>
+                経営者が集まる場所がある。
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ YC INTRO ============ -->
+    <section class="yc">
+        <div class="container">
+            <div class="yc__intro">
+                <div class="yc__intro-text">
+                    <p>
+                        ＹＣ（ヤングクラブ）は、株式会社YOLOが主宰する経営者・事業者のための商談コミュニティです。
+                        札幌から北見・釧路まで、全道7拠点で同時開催。業種を超えた経営者同士が、月に一度、本気の商売の場を共有します。
+                    </p>
+                    <p>
+                        「自分たちの市場は、自分たちでつくる。」<br>
+                        ＹＣは、その想いを掲げる経営者の輪を北海道全体に広げる集会です。
+                    </p>
+                    <p class="yc__pill"><span>毎月開催・全7拠点・累計参加企業 600社以上</span></p>
+                </div>
+                <div class="yc__intro-stats">
+                    <div class="stat"><span class="stat__num">7</span><span class="stat__label">拠点</span></div>
+                    <div class="stat"><span class="stat__num">月1</span><span class="stat__label">開催</span></div>
+                    <div class="stat"><span class="stat__num">全道</span><span class="stat__label">展開</span></div>
+                    <div class="stat"><span class="stat__num">600+</span><span class="stat__label">企業</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ MAP ============ -->
+        <div class="yc-map-band">
+            <div class="container">
+                <h2 class="section-title section-title--sub">
+                    <span class="section-title__deco section-title__deco--l"></span>
+                    全道、七つの拠点
+                    <span class="section-title__deco section-title__deco--r"></span>
+                </h2>
+                <p class="section-sub">星をなぞって、各会場の代表企業へ</p>
+
+                <div class="map-wrap">
+                    <div class="hokkaido-map-container">
+                        <img src="../hokkaido-prefecture_shima_map_3D_outline.png" alt="北海道マップ" class="hokkaido-base">
+                        <!-- venue ピンは script.js が venues.json から動的生成 -->
+                        <div class="venue-tooltip" id="venueTooltip" aria-hidden="true">
+                            <div class="tt__inner">
+                                <span class="tt__venue"></span>
+                                <span class="tt__rep"></span>
+                                <span class="tt__cta">代表企業HPへ →</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="venue-list">
+                        <h4>会場一覧</h4>
+                        <ul>
+                            <!-- venue リストは script.js が venues.json から動的生成 -->
+                            <li><span class="vno">01</span><span class="vname">札幌会場</span><span class="vrep">代表 佐藤光</span></li>
+                            <li><span class="vno">02</span><span class="vname">旭川会場</span><span class="vrep">代表 ── ──</span></li>
+                            <li><span class="vno">03</span><span class="vname">函館会場</span><span class="vrep">代表 ── ──</span></li>
+                            <li><span class="vno">04</span><span class="vname">釧路会場</span><span class="vrep">代表 ── ──</span></li>
+                            <li><span class="vno">05</span><span class="vname">帯広会場</span><span class="vrep">代表 ── ──</span></li>
+                            <li><span class="vno">06</span><span class="vname">北見会場</span><span class="vrep">代表 ── ──</span></li>
+                            <li><span class="vno">07</span><span class="vname">苫小牧会場</span><span class="vrep">代表 和泉</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SOCIAL CTA (LINE / Instagram) ============ -->
+    <section class="social-cta">
+        <div class="container social-cta__inner">
+            <p class="social-cta__eyebrow">— STAY CONNECTED —</p>
+            <h2 class="social-cta__title">もっと詳しく知りたい方へ</h2>
+            <p class="social-cta__lead">
+                YCの最新の開催情報・参加方法は、<br>
+                公式LINE と 公式Instagram で配信しています。
+            </p>
+
+            <div class="social-cta__buttons">
+                <!-- TODO: 公式LINE URL に差し替え -->
+                <a href="#" class="social-btn social-btn--line" target="_blank" rel="noopener">
+                    <span class="social-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19.365 9.89c.50 0 .91.41.91.91 0 .501-.41.91-.91.91h-2.546v1.636h2.546c.5 0 .91.408.91.909 0 .501-.41.91-.91.91h-3.455a.91.91 0 01-.91-.91V7.426c0-.5.41-.91.91-.91h3.455c.5 0 .91.41.91.91 0 .501-.41.91-.91.91h-2.546V9.89h2.546zM12.273 12.91a.91.91 0 01-.91.91.91.91 0 01-.728-.364l-3.546-4.818v4.272a.91.91 0 01-.91.91.91.91 0 01-.91-.91V7.426a.91.91 0 01.91-.91c.272 0 .545.136.727.364l3.547 4.818V7.426a.91.91 0 01.91-.91.91.91 0 01.91.91v5.484zM3.455 13.819a.91.91 0 01-.91-.909V7.426a.91.91 0 01.91-.91.91.91 0 01.91.91v5.484c0 .5-.41.909-.91.909zM12 0C5.373 0 0 4.388 0 9.795c0 4.846 4.27 8.901 10.034 9.665.39.084.922.258 1.057.59.121.301.079.773.039 1.078l-.171 1.027c-.054.305-.241 1.193 1.046.65 1.287-.543 6.951-4.092 9.489-7.013C23.227 13.927 24 12.024 24 9.795 24 4.388 18.628 0 12 0z"/></svg>
+                    </span>
+                    <span class="social-btn__body">
+                        <span class="social-btn__label">公式LINEを追加</span>
+                        <span class="social-btn__sub">最新の開催情報をお届け</span>
+                    </span>
+                    <span class="social-btn__arrow" aria-hidden="true">→</span>
+                </a>
+
+                <!-- TODO: 公式Instagram URL に差し替え -->
+                <a href="#" class="social-btn social-btn--instagram" target="_blank" rel="noopener">
+                    <span class="social-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </span>
+                    <span class="social-btn__body">
+                        <span class="social-btn__label">公式Instagramを見る</span>
+                        <span class="social-btn__sub">会場の様子・参加メンバー紹介</span>
+                    </span>
+                    <span class="social-btn__arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ BACK TO HOME ============ -->
+    <section class="back-band">
+        <div class="container back-band__inner">
+            <a href="../" class="back-band__btn">← 株式会社YOLO トップへ戻る</a>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="site-footer__ornament" aria-hidden="true">
+            <span></span><span></span><span>YOLO</span><span></span><span></span>
+        </div>
+        <div class="container site-footer__inner">
+            <div class="site-footer__brand">
+                <p class="site-footer__logo">YOLO</p>
+                <p class="site-footer__tag">You Only Live Once</p>
+                <p class="site-footer__addr">株式会社YOLO ／ 北海道</p>
+            </div>
+            <div class="site-footer__nav">
+                <h4>事業紹介</h4>
+                <ul>
+                    <li><a href="../yc/">YC（ヤングクラブ）</a></li>
+                    <li><a href="../royal/">ROYAL</a></li>
+                    <li><a href="../class/">Class</a></li>
+                    <li><a href="../consul/">イベントコンサル</a></li>
+                </ul>
+            </div>
+            <div class="site-footer__nav">
+                <h4>会社</h4>
+                <ul>
+                    <li><a href="../#about">YOLOとは</a></li>
+                    <li><a href="../#team">役員紹介</a></li>
+                    <li><a href="../#contact">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__copy">
+            <div class="container">
+                <p>&copy; 2026 株式会社YOLO All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#top" class="back-to-top" id="backToTop" aria-label="ページ上部に戻る">
+        <span class="back-to-top__arrow">↑</span>
+        <span class="back-to-top__label">TOP</span>
+    </a>
+
+    <script src="../script.js"></script>
+</body>
+</html>
