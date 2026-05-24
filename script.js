@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactForm();
     initSmoothScroll();
     initReveal();
+    initScrollUI();
 });
 
 // ---- mobile nav ----
@@ -98,6 +99,23 @@ function initSmoothScroll() {
             }
         });
     });
+}
+
+// ---- scroll progress bar + back-to-top ----
+function initScrollUI() {
+    const bar = document.getElementById('scrollProgress');
+    const btn = document.getElementById('backToTop');
+
+    const onScroll = () => {
+        const h = document.documentElement;
+        const max = (h.scrollHeight - h.clientHeight) || 1;
+        const pct = Math.min(100, Math.max(0, (h.scrollTop / max) * 100));
+        if (bar) bar.style.width = pct + '%';
+        if (btn) btn.classList.toggle('is-visible', h.scrollTop > 600);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 // ---- scroll reveal ----

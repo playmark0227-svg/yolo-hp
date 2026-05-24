@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- ============ SCROLL PROGRESS ============ -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
     <!-- ============ HEADER ============ -->
     <header class="site-header" id="siteHeader">
@@ -69,6 +71,8 @@
         <div class="container news-strip__inner">
             <span class="news-strip__label">NEWS</span>
             <p class="news-strip__item"><time>2026.04.20</time>YC札幌会場 第48回開催のご案内（5/18）</p>
+            <span class="news-strip__sep" aria-hidden="true">❖</span>
+            <p class="news-strip__item news-strip__item--alt"><time>2026.04.15</time>新拠点「函館会場」始動 ── 月例会スタート</p>
             <a href="#" class="news-strip__more">お知らせ一覧 →</a>
         </div>
     </section>
@@ -269,6 +273,7 @@
 
             <div class="team-grid">
                 <article class="member-card member-card--lead">
+                    <span class="member-card__no">No.01</span>
                     <div class="member-card__photo"><span>PHOTO</span></div>
                     <div class="member-card__body">
                         <p class="member-card__role">代表取締役 ／ CEO</p>
@@ -280,6 +285,7 @@
                     </div>
                 </article>
                 <article class="member-card">
+                    <span class="member-card__no">No.02</span>
                     <div class="member-card__photo"><span>PHOTO</span></div>
                     <div class="member-card__body">
                         <p class="member-card__role">取締役 ／ Director</p>
@@ -288,6 +294,7 @@
                     </div>
                 </article>
                 <article class="member-card">
+                    <span class="member-card__no">No.03</span>
                     <div class="member-card__photo"><span>PHOTO</span></div>
                     <div class="member-card__body">
                         <p class="member-card__role">メンバー ／ Member</p>
@@ -372,6 +379,9 @@
 
     <!-- ============ FOOTER ============ -->
     <footer class="site-footer">
+        <div class="site-footer__ornament" aria-hidden="true">
+            <span></span><span></span><span>YOLO</span><span></span><span></span>
+        </div>
         <div class="container site-footer__inner">
             <div class="site-footer__brand">
                 <p class="site-footer__logo">YOLO</p>
@@ -402,6 +412,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- ============ BACK TO TOP ============ -->
+    <a href="#top" class="back-to-top" id="backToTop" aria-label="ページ上部に戻る">
+        <span class="back-to-top__arrow">↑</span>
+        <span class="back-to-top__label">TOP</span>
+    </a>
 
     <script src="script.js"></script>
 </body>
