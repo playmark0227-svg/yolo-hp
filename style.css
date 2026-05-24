@@ -85,14 +85,15 @@ body::before {
     color: var(--text-mute);
     letter-spacing: .08em;
 }
-.site-nav ul { display: flex; gap: 28px; }
+.site-nav ul { display: flex; gap: 18px; align-items: center; }
 .site-nav a {
     font-family: var(--serif);
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     color: var(--ink);
     font-weight: 500;
     position: relative;
-    padding: 6px 0;
+    padding: 6px 2px;
+    white-space: nowrap;
 }
 .site-nav a::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: 0;
@@ -101,7 +102,67 @@ body::before {
     transition: transform .3s;
 }
 .site-nav a:hover { opacity: 1; }
-.site-nav a:hover::after { transform: scaleX(1); }
+.site-nav a:hover::after,
+.site-nav a.is-active::after { transform: scaleX(1); }
+.site-nav a.is-active { color: var(--matcha-deep); }
+
+/* service tabs (YC / ROYAL / Class / CONSUL) — 英文・少し小さめ・金色アクセント */
+.site-nav__service a {
+    font-family: var(--english);
+    font-size: 1.3rem;
+    letter-spacing: .12em;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 6px 6px;
+}
+.site-nav__service a::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 18px;
+    height: 2px;
+    background: var(--gold);
+    transition: transform .3s;
+    transform-origin: center;
+}
+.site-nav__service a:hover::before,
+.site-nav__service a.is-active::before { transform: translateX(-50%) scaleX(1); }
+.site-nav__service a.is-active { color: var(--matcha-deep); }
+
+/* 事業紹介と最初のサービスタブの間に縦罫 */
+.site-nav__service:first-of-type {
+    position: relative;
+    padding-left: 14px;
+    margin-left: -2px;
+}
+.site-nav__service:first-of-type::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 14px;
+    background: var(--line);
+}
+/* 最後のサービスタブと役員紹介の間にも縦罫 */
+.site-nav__service:last-of-type {
+    position: relative;
+    padding-right: 14px;
+    margin-right: -2px;
+}
+.site-nav__service:last-of-type::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 14px;
+    background: var(--line);
+}
 
 .site-header__toggle { display: none; flex-direction: column; gap: 5px; padding: 6px; }
 .site-header__toggle span { width: 24px; height: 2px; background: var(--ink); transition: .3s; }
@@ -1061,7 +1122,7 @@ body::before {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
     .site-nav { display: none; }
     .site-nav.is-open {
         display: block;
@@ -1069,8 +1130,14 @@ body::before {
         background: var(--paper);
         border-bottom: 1px solid var(--line);
         padding: 24px;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
     }
-    .site-nav.is-open ul { flex-direction: column; gap: 14px; }
+    .site-nav.is-open ul { flex-direction: column; gap: 14px; align-items: flex-start; }
+    .site-nav__service:first-of-type { padding-left: 0; margin-left: 0; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 4px; }
+    .site-nav__service:first-of-type::before { display: none; }
+    .site-nav__service:last-of-type { padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 4px; }
+    .site-nav__service:last-of-type::after { display: none; }
     .site-header__toggle { display: flex; }
 
     .hero__grid { grid-template-columns: 1fr; min-height: auto; }
