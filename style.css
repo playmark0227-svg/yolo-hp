@@ -1883,3 +1883,56 @@ body::before {
     .breadcrumb__current { display: none; }
 }
 
+/* ============================================================
+   ACCESSIBILITY — skip link / focus-visible / reduced-motion
+   ============================================================ */
+.skip-link {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 2000;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    padding: 10px 20px;
+    border-radius: 0 0 6px 6px;
+    border: 1px solid var(--gold);
+    transition: top .25s;
+}
+.skip-link:focus {
+    top: 0;
+    opacity: 1;
+    outline: none;
+}
+
+/* キーボード操作時のみ可視なフォーカスリング */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.venue-pin:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+/* マウスクリック時はリングを出さない（対応ブラウザ） */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) { outline: none; }
+
+/* モーション軽減設定を尊重（前庭障害・酔いやすいユーザー向け） */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .pin__dot { animation: none !important; }
+}
+

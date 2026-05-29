@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a3358"/>
+      <stop offset="0.55" stop-color="#1f2742"/>
+      <stop offset="1" stop-color="#131a31"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2f7a51" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#2f7a51" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="seigaiha" width="90" height="45" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#c8a958" stroke-width="1.4" opacity="0.16">
+        <circle cx="0" cy="45" r="22"/><circle cx="45" cy="45" r="22"/><circle cx="90" cy="45" r="22"/>
+        <circle cx="22.5" cy="22.5" r="22"/><circle cx="67.5" cy="22.5" r="22"/>
+        <circle cx="0" cy="0" r="22"/><circle cx="45" cy="0" r="22"/><circle cx="90" cy="0" r="22"/>
+      </g>
+    </pattern>
+  </defs>
+
+  <!-- full-bleed navy so any crop tolerance stays on-brand -->
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#glow)"/>
+
+  <!-- design occupies the centered 1200x630 band (y 285..915) -->
+  <rect x="0" y="755" width="1200" height="160" fill="url(#seigaiha)"/>
+
+  <!-- gold frame accents at OG band edges -->
+  <rect x="0" y="285" width="1200" height="10" fill="#c8a958"/>
+  <rect x="0" y="905" width="1200" height="10" fill="#c8a958"/>
+
+  <text x="600" y="457" text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif" font-size="26" letter-spacing="14"
+        fill="#c8a958" opacity="0.9">YOU ONLY LIVE ONCE</text>
+
+  <text x="600" y="605" text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif" font-size="168" font-weight="600"
+        letter-spacing="12" fill="#c8a958">YOLO</text>
+
+  <rect x="540" y="657" width="120" height="2" fill="#c8a958" opacity="0.7"/>
+
+  <text x="600" y="731" text-anchor="middle"
+        font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="46" font-weight="600"
+        letter-spacing="8" fill="#ffffff">株式会社YOLO</text>
+
+  <text x="600" y="795" text-anchor="middle"
+        font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="30"
+        letter-spacing="6" fill="#e7e3d8">北海道の経営者を、結ぶ。</text>
+
+  <text x="600" y="851" text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif" font-size="20" letter-spacing="8"
+        fill="#c8a958" opacity="0.75">HOKKAIDO, JAPAN</text>
+</svg>

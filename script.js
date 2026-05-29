@@ -83,6 +83,7 @@ function initMap() {
         a.href = v.url || '#';
         a.style.left = v.x + '%';
         a.style.top  = v.y + '%';
+        a.setAttribute('aria-label', `${v.name}（${v.representative}）`);
         a.innerHTML = `<span class="pin__dot"></span><span class="pin__label">${v.name.replace('会場','')}</span>`;
         wrap.insertBefore(a, tip);
     });
@@ -94,14 +95,17 @@ function initMap() {
         const d = VENUES.find(v => v.id === id);
         if (!d) return;
 
-        pin.addEventListener('mouseenter', (e) => {
+        const showTip = () => {
             tip.querySelector('.tt__venue').textContent = d.name;
             tip.querySelector('.tt__rep').textContent = d.representative;
             tip.classList.add('is-visible');
-            placeTip(e, tip, wrap);
-        });
+        };
+        pin.addEventListener('mouseenter', (e) => { showTip(); placeTip(e, tip, wrap); });
         pin.addEventListener('mousemove', (e) => placeTip(e, tip, wrap));
         pin.addEventListener('mouseleave', () => tip.classList.remove('is-visible'));
+        // キーボード操作（Tabでフォーカス）でもツールチップを表示
+        pin.addEventListener('focus', () => { showTip(); placeTipAtPin(pin, tip, wrap); });
+        pin.addEventListener('blur', () => tip.classList.remove('is-visible'));
     });
 
     // venue-list があれば JSON データから再生成
@@ -122,6 +126,14 @@ function placeTip(e, tip, wrap) {
     const y = e.clientY - r.top - 70;
     tip.style.left = x + 'px';
     tip.style.top = y + 'px';
+}
+
+// ピン自身の位置を基準にツールチップを配置（キーボードフォーカス用）
+function placeTipAtPin(pin, tip, wrap) {
+    const pr = pin.getBoundingClientRect();
+    const wr = wrap.getBoundingClientRect();
+    tip.style.left = (pr.left - wr.left + pr.width / 2 + 14) + 'px';
+    tip.style.top  = (pr.top - wr.top - 10) + 'px';
 }
 
 // ---- contact form (placeholder handler) ----
