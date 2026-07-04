@@ -1936,3 +1936,199 @@ button:focus:not(:focus-visible) { outline: none; }
     .pin__dot { animation: none !important; }
 }
 
+/* ============================================================
+   REAL LOGOS (公式ロゴ差し替え)
+   ============================================================ */
+.site-header__mark {
+    display: block;
+    height: 46px;
+    width: auto;
+}
+.site-header__brand { align-items: flex-start; }
+.site-header__sub { margin-top: 3px; }
+.site-footer__mark {
+    height: 52px;
+    width: auto;
+    display: block;
+    margin-bottom: 12px;
+}
+@media (max-width: 600px) {
+    .site-header__mark { height: 38px; }
+}
+
+/* YC emblem (公式エンブレム) — cream medallion so it reads on the dark hero */
+.yc-emblem {
+    width: 118px;
+    height: 118px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 22px;
+    background: #fbf8f1;
+    border-radius: 50%;
+    padding: 14px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+
+/* ============================================================
+   SERVICE CARD — real photo support
+   ============================================================ */
+.service-card__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .8s;
+}
+.service-card:hover .service-card__photo img { transform: scale(1.06); }
+
+/* ============================================================
+   PHOTO GALLERY (実写ギャラリー)
+   ============================================================ */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 1080px;
+    margin: 40px auto 0;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item--wide { grid-column: span 2; aspect-ratio: 8 / 3; }
+.gallery-item__cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, transparent, rgba(19,26,49,.82));
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    letter-spacing: .06em;
+    padding: 20px 14px 10px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.gallery-item:hover .gallery-item__cap { opacity: 1; }
+@media (max-width: 700px) {
+    .photo-gallery { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item--wide { grid-column: span 2; aspect-ratio: 16 / 7; }
+}
+
+/* ============================================================
+   YC HERO — real photo background
+   ============================================================ */
+.page-hero--yc-photo {
+    background: linear-gradient(180deg, rgba(19,26,49,.72), rgba(19,26,49,.86)),
+                var(--yc-hero, none) center/cover no-repeat, var(--ink);
+}
+
+/* ============================================================
+   CLASS PAGE — night party (ダーク&華やか)
+   ============================================================ */
+.class-night {
+    background: #0c0e18;
+    color: #f3f1ea;
+}
+.class-hero {
+    position: relative;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(200,169,88,.35);
+}
+.class-hero__bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+.class-hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(6,8,16,.55) 0%, rgba(6,8,16,.35) 45%, rgba(6,8,16,.9) 100%);
+    z-index: 1;
+}
+.class-hero__inner {
+    position: relative;
+    z-index: 2;
+    padding: 40px 24px;
+    max-width: 780px;
+}
+.class-hero__logo {
+    width: min(420px, 80%);
+    height: auto;
+    margin: 0 auto 26px;
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,.5));
+}
+.class-hero__tag {
+    font-family: var(--english);
+    letter-spacing: .5em;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+.class-hero__lead {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.8;
+    letter-spacing: .1em;
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,.6);
+}
+.class-section { padding: 88px 0; }
+.class-section .section-title { color: #fff; }
+.class-section .section-title__deco--l::after,
+.class-section .section-title__deco--r::after { background: #0c0e18; color: var(--gold); }
+.class-section .section-title__deco--l::before,
+.class-section .section-title__deco--r::before { background: rgba(255,255,255,.4); }
+.class-section .section-sub { color: rgba(255,255,255,.6); }
+.class-section .section-sub::after { background: var(--gold); }
+.class-lead-copy {
+    max-width: 760px;
+    margin: 0 auto 8px;
+    text-align: center;
+    font-size: 1.55rem;
+    line-height: 2.1;
+    color: rgba(243,241,234,.86);
+    letter-spacing: .04em;
+}
+.class-gallery { background: #0a0c14; border-top: 1px solid rgba(255,255,255,.06); }
+.class-gallery .gallery-item {
+    border-color: rgba(255,255,255,.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,.4);
+}
+.class-night .social-cta {
+    background: radial-gradient(ellipse at 50% 0%, rgba(200,169,88,.12), transparent 70%), #0c0e18;
+    border-color: rgba(255,255,255,.08);
+}
+.class-night .social-cta__title { color: #fff; }
+.class-night .social-cta__lead { color: rgba(243,241,234,.8); }
+.class-night .back-band { background: #0a0c14; }
+.class-night .back-band__btn { color: #f3f1ea; border-color: rgba(255,255,255,.4); }
+.class-night .back-band__btn:hover { background: var(--gold); color: #0c0e18; border-color: var(--gold); }
+
+/* YC gallery section */
+.yc-gallery-section {
+    padding: 88px 0 96px;
+    background: var(--paper-card);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
