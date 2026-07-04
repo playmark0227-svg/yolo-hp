@@ -2132,3 +2132,107 @@ button:focus:not(:focus-visible) { outline: none; }
     border-bottom: 1px solid var(--line);
 }
 
+/* ============================================================
+   PHOTO HERO (consul / royal 詳細ページ)
+   ============================================================ */
+.page-hero--photo {
+    position: relative;
+    overflow: hidden;
+    min-height: 58vh;
+    display: flex;
+    align-items: center;
+    padding: 72px 0;
+}
+.page-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+.page-hero--photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(19,26,49,.68) 0%, rgba(19,26,49,.8) 100%);
+    z-index: 1;
+}
+.page-hero--photo .page-hero__inner { position: relative; z-index: 2; }
+.page-hero--royal::after {
+    background: linear-gradient(180deg, rgba(20,16,8,.62) 0%, rgba(14,11,6,.86) 100%);
+}
+
+/* ============================================================
+   FEATURES (3つの強み)
+   ============================================================ */
+.features { padding: 88px 0; background: var(--paper); }
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 44px auto 0;
+}
+.feature-card {
+    background: var(--paper-card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 36px 26px;
+    text-align: center;
+    transition: transform .3s, box-shadow .3s;
+    position: relative;
+}
+.feature-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 44px; height: 3px;
+    background: var(--matcha);
+    border-radius: 0 0 3px 3px;
+}
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(0,0,0,.08); }
+.feature-card__no {
+    font-family: var(--english);
+    color: var(--matcha);
+    font-size: 1.3rem;
+    letter-spacing: .25em;
+    font-weight: 600;
+}
+.feature-card__title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--ink);
+    margin: 8px 0 14px;
+    font-weight: 700;
+    letter-spacing: .06em;
+}
+.feature-card__desc { font-size: 1.35rem; line-height: 1.95; color: var(--text); text-align: left; }
+
+/* royal gold-accent features */
+.royal-feature .feature-card::before { background: var(--gold); }
+.royal-feature .feature-card__no,
+.royal-feature .feature-card__title { color: var(--ink); }
+.royal-feature .feature-card__no { color: var(--gold); }
+
+/* 近日公開ノート (royal) */
+.soon-note {
+    max-width: 720px;
+    margin: 48px auto 0;
+    text-align: center;
+    padding: 26px 28px;
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    background: rgba(200,169,88,.06);
+    font-size: 1.35rem;
+    line-height: 1.9;
+    color: var(--text-mute);
+}
+.soon-note strong { color: var(--ink); font-family: var(--serif); }
+
+@media (max-width: 800px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .page-hero--photo { min-height: 44vh; }
+}
+
