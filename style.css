@@ -870,6 +870,16 @@ body::before {
 .member-card__photo::after {
     content: ""; position: absolute; inset: 12px;
     border: 1px solid rgba(255,255,255,.4);
+    z-index: 1;
+    pointer-events: none;
+}
+.member-card__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
 }
 .member-card__body { padding: 24px 20px; }
 .member-card__role {
