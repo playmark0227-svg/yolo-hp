@@ -881,6 +881,33 @@ body::before {
     object-fit: cover;
     object-position: center 22%;
 }
+
+/* solo representative (代表1名) — horizontal card, centered */
+.team-solo {
+    max-width: 760px;
+    margin: 44px auto 0;
+}
+.team-solo .member-card {
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    align-items: stretch;
+}
+.team-solo .member-card__photo {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 360px;
+}
+.team-solo .member-card__body {
+    padding: 36px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.team-solo .member-card__name { font-size: 2.4rem; }
+@media (max-width: 640px) {
+    .team-solo .member-card { grid-template-columns: 1fr; }
+    .team-solo .member-card__photo { aspect-ratio: 4 / 3.4; min-height: 0; height: auto; }
+}
 .member-card__body { padding: 24px 20px; }
 .member-card__role {
     font-family: var(--english);
