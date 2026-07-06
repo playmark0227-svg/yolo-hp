@@ -2170,6 +2170,231 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 
 /* ============================================================
+   CHIEFS — 会場組合長（1人1テーマ：写真の雰囲気に合わせた個別デザイン）
+   ============================================================ */
+.chiefs { padding: 92px 0 84px; background: var(--paper); }
+.chiefs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    max-width: 1000px;
+    margin: 44px auto 0;
+}
+.chief-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 340px;
+    transition: transform .35s, box-shadow .35s;
+}
+.chief-card:hover { transform: translateY(-5px); }
+
+.chief-card__photo { position: relative; overflow: hidden; }
+.chief-card__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.chief-card__venue {
+    display: inline-block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    padding: 5px 16px;
+    margin-bottom: 12px;
+}
+.chief-card__role { font-size: 1.2rem; letter-spacing: .12em; margin-bottom: 4px; }
+.chief-card__role small { font-size: .9em; opacity: .7; letter-spacing: .06em; }
+.chief-card__name {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin-bottom: 14px;
+    line-height: 1.3;
+}
+.chief-card__catch {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    letter-spacing: .1em;
+    line-height: 1.8;
+}
+.chiefs-note {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 1.3rem;
+    color: var(--text-mute);
+    letter-spacing: .06em;
+}
+
+/* ---- ① 苫小牧: 明るいオフィス×白シャツ → 木の温もり・ナチュラル ---- */
+.chief-card--tomakomai {
+    display: grid;
+    grid-template-columns: 46% 1fr;
+    background: #fdfaf2;
+    border: 1px solid #e3d9c3;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(138, 111, 77, .1);
+}
+.chief-card--tomakomai:hover { box-shadow: 0 16px 34px rgba(138, 111, 77, .18); }
+.chief-card--tomakomai .chief-card__photo { border-radius: 12px 0 0 12px; }
+.chief-card--tomakomai .chief-card__body {
+    padding: 30px 26px;
+    display: flex; flex-direction: column; justify-content: center;
+    background:
+        linear-gradient(90deg, rgba(227, 217, 195, .35) 0, transparent 12px),
+        repeating-linear-gradient(0deg, transparent 0 26px, rgba(138, 111, 77, .05) 26px 27px);
+}
+.chief-card--tomakomai .chief-card__venue {
+    background: #8a6f4d; color: #fdfaf2; border-radius: 20px;
+    align-self: flex-start;
+}
+.chief-card--tomakomai .chief-card__role { color: #8a6f4d; }
+.chief-card--tomakomai .chief-card__name { color: #4a3d2c; }
+.chief-card--tomakomai .chief-card__catch { color: #6d5c42; }
+.chief-card--tomakomai .chief-card__catch::before { content: "🌿 "; font-size: .9em; }
+
+/* ---- ② 小樽A: オレンジパーカー×燃えるハート → ビビッド・ポップ ---- */
+.chief-card--otaru-a {
+    background:
+        radial-gradient(circle at 80% 12%, rgba(255, 255, 255, .65), transparent 45%),
+        linear-gradient(165deg, #fff3e6 0%, #ffd9b3 55%, #f7b06a 100%);
+    border-radius: 26px;
+    text-align: center;
+    padding: 34px 26px 30px;
+    border: 2px solid #e8641b;
+    box-shadow: 0 8px 0 #e8641b;
+}
+.chief-card--otaru-a:hover { box-shadow: 0 13px 0 #e8641b; }
+.chief-card--otaru-a .chief-card__photo {
+    width: 158px; height: 158px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    border: 4px solid #e8641b;
+    box-shadow: 0 6px 16px rgba(232, 100, 27, .35);
+}
+.chief-card--otaru-a .chief-card__venue {
+    background: #e8641b; color: #fff; border-radius: 20px;
+    transform: rotate(-2deg);
+}
+.chief-card--otaru-a .chief-card__role { color: #b34a10; }
+.chief-card--otaru-a .chief-card__name { color: #7c3508; }
+.chief-card--otaru-a .chief-card__catch { color: #a1440e; font-weight: 700; }
+.chief-card--otaru-a .chief-card__catch::before { content: "♥ "; color: #e8321b; }
+.chief-card--otaru-a .chief-card__catch::after { content: " ♥"; color: #e8321b; }
+
+/* ---- ③ 函館: 薄暗いバー → ノワール・ネオンブルー ---- */
+.chief-card--hakodate {
+    background: #0d1119;
+    border-radius: 4px;
+    min-height: 420px;
+    box-shadow: 0 0 0 1px #2a3b55, 0 10px 30px rgba(0, 0, 0, .45);
+}
+.chief-card--hakodate:hover { box-shadow: 0 0 0 1px #4a7dbb, 0 0 26px rgba(74, 125, 187, .4), 0 14px 34px rgba(0, 0, 0, .5); }
+.chief-card--hakodate .chief-card__bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: .78;
+    transition: opacity .4s, transform .8s;
+}
+.chief-card--hakodate:hover .chief-card__bg { opacity: .92; transform: scale(1.04); }
+.chief-card--hakodate::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(6, 9, 15, .92) 100%);
+}
+.chief-card--hakodate .chief-card__body {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    z-index: 2;
+    padding: 26px 26px 24px;
+}
+.chief-card--hakodate .chief-card__venue {
+    background: rgba(13, 17, 25, .85); color: #7fb0e8;
+    border: 1px solid #3a557c;
+    letter-spacing: .3em;
+}
+.chief-card--hakodate .chief-card__role { color: #7fa5d4; }
+.chief-card--hakodate .chief-card__name { color: #f2f5fa; text-shadow: 0 2px 12px rgba(0,0,0,.8); }
+.chief-card--hakodate .chief-card__catch { color: #b8cbe4; font-style: italic; }
+
+/* ---- ④ 小樽B: 黒ジャケット×登壇 → スチールブルー・知的ミニマル ---- */
+.chief-card--otaru-b {
+    display: grid;
+    grid-template-columns: 1fr 45%;
+    background: #eef1f5;
+    border-radius: 0;
+    border-top: 4px solid #47617a;
+    box-shadow: 0 4px 16px rgba(71, 97, 122, .14);
+}
+.chief-card--otaru-b:hover { box-shadow: 0 12px 28px rgba(71, 97, 122, .24); }
+.chief-card--otaru-b .chief-card__body {
+    padding: 30px 26px;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.chief-card--otaru-b .chief-card__venue {
+    background: transparent; color: #47617a;
+    border: 1px solid #47617a;
+    border-radius: 0;
+    font-family: var(--english);
+    align-self: flex-start;
+}
+.chief-card--otaru-b .chief-card__role {
+    color: #5f7891;
+    border-bottom: 1px solid #c6d0da;
+    padding-bottom: 8px; margin-bottom: 8px;
+}
+.chief-card--otaru-b .chief-card__name { color: #22303e; }
+.chief-card--otaru-b .chief-card__catch { color: #47617a; letter-spacing: .16em; }
+.chief-card--otaru-b .chief-card__photo {
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ---- ⑤ 旭川: 作業着×現場 → アース・インダストリアル（ワイド） ---- */
+.chief-card--asahikawa {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    background: #f0efe8;
+    border-radius: 6px;
+    border: 1px solid #cfcdbd;
+    min-height: 300px;
+}
+.chief-card--asahikawa::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(-45deg, #5f6b52 0 14px, #d8d5c4 14px 28px);
+    z-index: 2;
+}
+.chief-card--asahikawa:hover { box-shadow: 0 14px 30px rgba(95, 107, 82, .2); }
+.chief-card--asahikawa .chief-card__body {
+    padding: 38px 34px;
+    display: flex; flex-direction: column; justify-content: center;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(95, 107, 82, .08), transparent 55%);
+}
+.chief-card--asahikawa .chief-card__venue {
+    background: #5f6b52; color: #f0efe8;
+    border-radius: 2px;
+    align-self: flex-start;
+}
+.chief-card--asahikawa .chief-card__role { color: #5f6b52; font-weight: 700; }
+.chief-card--asahikawa .chief-card__name { color: #3a4232; }
+.chief-card--asahikawa .chief-card__catch {
+    color: #55604a;
+    border-left: 3px solid #5f6b52;
+    padding-left: 14px;
+}
+
+@media (max-width: 800px) {
+    .chiefs-grid { grid-template-columns: 1fr; }
+    .chief-card--tomakomai { grid-template-columns: 1fr; }
+    .chief-card--tomakomai .chief-card__photo { border-radius: 12px 12px 0 0; aspect-ratio: 4 / 3; }
+    .chief-card--otaru-b { grid-template-columns: 1fr; }
+    .chief-card--otaru-b .chief-card__photo { order: -1; clip-path: none; aspect-ratio: 16 / 9; }
+    .chief-card--hakodate { min-height: 460px; }
+    .chief-card--asahikawa { grid-template-columns: 1fr; }
+    .chief-card--asahikawa .chief-card__photo { aspect-ratio: 4 / 3; }
+}
+
+/* ============================================================
    PHOTO HERO (consul / royal 詳細ページ)
    ============================================================ */
 .page-hero--photo {

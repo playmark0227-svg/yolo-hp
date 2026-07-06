@@ -7,13 +7,14 @@
 // ローカル file:// プレビュー用に、fetch 失敗時は下記 FALLBACK_VENUES を使う。
 
 const FALLBACK_VENUES = [
-    { id: 'sapporo',   name: '札幌会場',   representative: '代表 佐藤光',     url: '#', x: 23, y: 60 },
-    { id: 'asahikawa', name: '旭川会場',   representative: '代表 ── ──',     url: '#', x: 38, y: 45 },
-    { id: 'hakodate',  name: '函館会場',   representative: '代表 ── ──',     url: '#', x: 14, y: 74 },
-    { id: 'kushiro',   name: '釧路会場',   representative: '代表 ── ──',     url: '#', x: 50, y: 62 },
-    { id: 'obihiro',   name: '帯広会場',   representative: '代表 ── ──',     url: '#', x: 39, y: 62 },
-    { id: 'kitami',    name: '北見会場',   representative: '代表 ── ──',     url: '#', x: 50, y: 38 },
-    { id: 'tomakomai', name: '苫小牧会場', representative: '代表 和泉',       url: '#', x: 28, y: 64 },
+    { id: 'sapporo',   name: '札幌会場',   representative: '組合長 佐藤光',      url: '#', x: 23,   y: 60 },
+    { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#', x: 18.5, y: 56 },
+    { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#', x: 38,   y: 45 },
+    { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#', x: 14,   y: 74 },
+    { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 62 },
+    { id: 'obihiro',   name: '帯広会場',   representative: '組合長 ── ──',      url: '#', x: 39,   y: 62 },
+    { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 38 },
+    { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#', x: 28,   y: 64 },
 ];
 
 // document.currentScript はパース時のみ参照可。トップ用 / サブページ用どちらでも
@@ -189,7 +190,7 @@ function initScrollUI() {
 // ---- scroll reveal ----
 function initReveal() {
     const targets = document.querySelectorAll(
-        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .cta-band__inner, .intro-band__inner, .page-hero__inner, .social-cta__inner, .coming-soon__inner'
+        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .cta-band__inner, .intro-band__inner, .page-hero__inner, .social-cta__inner, .coming-soon__inner, .chief-card, .chiefs-note'
     );
     targets.forEach(el => el.classList.add('reveal'));
 
