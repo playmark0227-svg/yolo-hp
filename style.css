@@ -2284,6 +2284,56 @@ img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグルー
     letter-spacing: .06em;
 }
 
+/* ---- ⓪ 札幌: 明るい会議室×ホワイトボード → 方眼紙・ワークスペース（旗艦ワイド） ---- */
+.chief-card--sapporo {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 42%;
+    background-color: #fff;
+    background-image:
+        linear-gradient(rgba(43, 49, 62, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43, 49, 62, .055) 1px, transparent 1px);
+    background-size: 22px 22px;
+    border: 2px solid #2b313e;
+    border-radius: 10px;
+    min-height: 320px;
+    box-shadow: 6px 6px 0 rgba(43, 49, 62, .12);
+}
+.chief-card--sapporo:hover { box-shadow: 8px 10px 0 rgba(43, 49, 62, .18); }
+.chief-card--sapporo .chief-card__body {
+    padding: 40px 38px;
+    display: flex; flex-direction: column; justify-content: center;
+}
+.chief-card--sapporo .chief-card__venue {
+    background: #2b313e; color: #fff;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+.chief-card--sapporo .chief-card__role { color: #5a6372; }
+.chief-card--sapporo .chief-card__name {
+    color: #1d222c;
+    display: inline-block;
+    align-self: flex-start;
+    /* マーカーで引いたような下線 */
+    background: linear-gradient(transparent 68%, rgba(47, 160, 90, .35) 68%, rgba(47, 160, 90, .35) 94%, transparent 94%);
+    padding: 0 6px 2px 0;
+}
+.chief-card--sapporo .chief-card__catch { color: #3c4450; letter-spacing: .14em; }
+.chief-card--sapporo .chief-card__catch::before { content: "✎ "; color: #2fa05a; }
+.chief-card--sapporo .chief-card__photo {
+    border-left: 2px solid #2b313e;
+    border-radius: 0 8px 8px 0;
+}
+.chief-card--sapporo .chief-card__photo img { object-position: 38% 22%; }
+.chief-card--sapporo .chief-card__en {
+    left: 34px; bottom: 16px;
+    font-size: 3.6rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(43, 49, 62, .22);
+}
+
 /* ---- ① 苫小牧: 明るいオフィス×白シャツ → 木の温もり・ナチュラル ---- */
 .chief-card--tomakomai {
     display: grid;
@@ -2454,6 +2504,9 @@ img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグルー
 
 @media (max-width: 800px) {
     .chiefs-grid { grid-template-columns: 1fr; }
+    .chief-card--sapporo { grid-template-columns: 1fr; }
+    .chief-card--sapporo .chief-card__photo { order: -1; border-left: 0; border-bottom: 2px solid #2b313e; border-radius: 8px 8px 0 0; aspect-ratio: 16 / 10; }
+    .chief-card--sapporo .chief-card__en { display: none; }
     .chief-card--tomakomai { grid-template-columns: 1fr; }
     .chief-card--tomakomai .chief-card__photo { border-radius: 12px 12px 0 0; aspect-ratio: 4 / 3; }
     .chief-card--otaru-b { grid-template-columns: 1fr; }

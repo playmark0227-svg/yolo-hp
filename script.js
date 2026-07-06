@@ -12,7 +12,7 @@ const FALLBACK_VENUES = [
     { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#', x: 38,   y: 45 },
     { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#', x: 14,   y: 74 },
     { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 62 },
-    { id: 'obihiro',   name: '帯広会場',   representative: '組合長 ── ──',      url: '#', x: 39,   y: 62 },
+    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#', x: 39,   y: 62 },
     { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 38 },
     { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#', x: 28,   y: 64 },
 ];
