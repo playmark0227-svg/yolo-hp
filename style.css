@@ -1203,8 +1203,9 @@ body::before {
 }
 
 @media (max-width: 600px) {
-    .section-title { font-size: 2.4rem; gap: 12px; }
-    .section-title__deco { width: 36px; }
+    /* 長い見出し（例: 会場を率いる組合長）が語中で折れないようサイズ調整 */
+    .section-title { font-size: 2.05rem; gap: 10px; letter-spacing: .07em; }
+    .section-title__deco { width: 26px; }
     .yc__intro-stats { grid-template-columns: repeat(2, 1fr); }
     .team-grid { grid-template-columns: 1fr; }
     .news-strip__inner { gap: 12px; }
@@ -2047,6 +2048,14 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 .gallery-item:hover img { transform: scale(1.06); }
 .gallery-item--wide { grid-column: span 2; aspect-ratio: 8 / 3; }
+
+/* 顔が切れないよう個別クロップ調整（元写真の顔位置に合わせる） */
+img[src*="yc-networking"]   { object-position: center 28%; }
+img[src*="yc-group"]        { object-position: center 35%; }
+img[src*="consul-seminar"]  { object-position: center 26%; }  /* 松永氏の顔は上寄り */
+img[src*="class-lounge"],
+img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグループの頭を確保 */
+.service-card__photo img[src*="class-hero"] { object-position: center 40%; }  /* LEDバナーを見せる */
 .gallery-item__cap {
     position: absolute;
     left: 0; right: 0; bottom: 0;
@@ -2172,7 +2181,60 @@ button:focus:not(:focus-visible) { outline: none; }
 /* ============================================================
    CHIEFS — 会場組合長（1人1テーマ：写真の雰囲気に合わせた個別デザイン）
    ============================================================ */
-.chiefs { padding: 92px 0 84px; background: var(--paper); }
+.chiefs {
+    padding: 92px 0 84px;
+    background: linear-gradient(180deg, var(--paper) 0%, #f2eee1 100%);
+    border-top: 1px solid var(--line);
+}
+
+/* 英字ウォーターマーク（カードごとの個性づけ） */
+.chief-card__en {
+    position: absolute;
+    font-family: var(--english);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    z-index: 1;
+}
+.chief-card--tomakomai .chief-card__en {
+    right: 14px; bottom: 10px;
+    font-size: 3.4rem;
+    font-style: italic;
+    color: rgba(138, 111, 77, .13);
+    letter-spacing: .08em;
+}
+.chief-card--otaru-a .chief-card__en {
+    left: -6px; top: 18px;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: rgba(232, 100, 27, .18);
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    letter-spacing: .3em;
+}
+.chief-card--hakodate .chief-card__en {
+    right: 14px; top: 16px;
+    writing-mode: vertical-rl;
+    font-size: 1.5rem;
+    letter-spacing: .55em;
+    color: rgba(127, 176, 232, .5);
+    z-index: 2;
+}
+.chief-card--otaru-b .chief-card__en {
+    left: 26px; top: 18px;
+    font-size: 1.3rem;
+    letter-spacing: .5em;
+    color: #8ba0b4;
+    border-bottom: 1px solid #c6d0da;
+    padding-bottom: 4px;
+}
+.chief-card--asahikawa .chief-card__en {
+    right: 22px; bottom: 14px;
+    font-size: 4.6rem;
+    font-weight: 700;
+    color: rgba(95, 107, 82, .1);
+    letter-spacing: .12em;
+}
 .chiefs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2233,6 +2295,7 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 .chief-card--tomakomai:hover { box-shadow: 0 16px 34px rgba(138, 111, 77, .18); }
 .chief-card--tomakomai .chief-card__photo { border-radius: 12px 0 0 12px; }
+.chief-card--tomakomai .chief-card__photo img { object-position: center 26%; }
 .chief-card--tomakomai .chief-card__body {
     padding: 30px 26px;
     display: flex; flex-direction: column; justify-content: center;
@@ -2262,12 +2325,13 @@ button:focus:not(:focus-visible) { outline: none; }
 }
 .chief-card--otaru-a:hover { box-shadow: 0 13px 0 #e8641b; }
 .chief-card--otaru-a .chief-card__photo {
-    width: 158px; height: 158px;
+    width: 170px; height: 170px;
     margin: 0 auto 18px;
     border-radius: 50%;
     border: 4px solid #e8641b;
     box-shadow: 0 6px 16px rgba(232, 100, 27, .35);
 }
+.chief-card--otaru-a .chief-card__photo img { object-position: center 30%; }
 .chief-card--otaru-a .chief-card__venue {
     background: #e8641b; color: #fff; border-radius: 20px;
     transform: rotate(-2deg);
@@ -2290,10 +2354,12 @@ button:focus:not(:focus-visible) { outline: none; }
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    opacity: .78;
+    object-position: 30% 28%;   /* 顔（左上寄り）をフレーム内に */
+    opacity: .88;
+    filter: brightness(1.28) contrast(1.02);  /* 暗所写真の顔を持ち上げ */
     transition: opacity .4s, transform .8s;
 }
-.chief-card--hakodate:hover .chief-card__bg { opacity: .92; transform: scale(1.04); }
+.chief-card--hakodate:hover .chief-card__bg { opacity: 1; transform: scale(1.04); }
 .chief-card--hakodate::after {
     content: "";
     position: absolute; inset: 0;
@@ -2342,8 +2408,10 @@ button:focus:not(:focus-visible) { outline: none; }
 .chief-card--otaru-b .chief-card__name { color: #22303e; }
 .chief-card--otaru-b .chief-card__catch { color: #47617a; letter-spacing: .16em; }
 .chief-card--otaru-b .chief-card__photo {
-    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(9% 0, 100% 0, 100% 100%, 0 100%);
 }
+/* 元写真は本人が左側・スクリーンが右側 → 左寄せで顔をフレームに入れる */
+.chief-card--otaru-b .chief-card__photo img { object-position: 12% 40%; }
 
 /* ---- ⑤ 旭川: 作業着×現場 → アース・インダストリアル（ワイド） ---- */
 .chief-card--asahikawa {
@@ -2375,6 +2443,7 @@ button:focus:not(:focus-visible) { outline: none; }
     border-radius: 2px;
     align-self: flex-start;
 }
+.chief-card--asahikawa .chief-card__photo img { object-position: center 18%; }
 .chief-card--asahikawa .chief-card__role { color: #5f6b52; font-weight: 700; }
 .chief-card--asahikawa .chief-card__name { color: #3a4232; }
 .chief-card--asahikawa .chief-card__catch {
