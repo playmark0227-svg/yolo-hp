@@ -7,14 +7,14 @@
 // ローカル file:// プレビュー用に、fetch 失敗時は下記 FALLBACK_VENUES を使う。
 
 const FALLBACK_VENUES = [
-    { id: 'sapporo',   name: '札幌会場',   representative: '組合長 佐藤光',      url: '#', x: 23,   y: 60 },
-    { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#', x: 18.5, y: 56 },
-    { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#', x: 38,   y: 45 },
-    { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#', x: 14,   y: 74 },
-    { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 62 },
-    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#', x: 39,   y: 62 },
-    { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 38 },
-    { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#', x: 28,   y: 64 },
+    { id: 'sapporo',   name: '札幌会場',   representative: '組合長 佐藤光',      url: '#', x: 21,   y: 57.5 },
+    { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#', x: 17, y: 53.5 },
+    { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#', x: 37,   y: 42 },
+    { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#', x: 13.5,   y: 71 },
+    { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#', x: 52,   y: 55 },
+    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#', x: 42,   y: 58 },
+    { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 40 },
+    { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#', x: 27,   y: 61.5 },
 ];
 
 // document.currentScript はパース時のみ参照可。トップ用 / サブページ用どちらでも
@@ -70,7 +70,8 @@ function initMobileNav() {
 // ---- Hokkaido venue map ----
 // venues 配列を元にピンを動的生成（地図エリアがあるページのみ）
 function initMap() {
-    const wrap = document.querySelector('.hokkaido-map-container');
+    // stage（画像と同サイズ）にピンを置くことで、座標% = 画像上の位置になる
+    const wrap = document.querySelector('.hokkaido-map-stage') || document.querySelector('.hokkaido-map-container');
     const tip  = document.getElementById('venueTooltip');
     if (!wrap || !tip) return;
 

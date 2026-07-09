@@ -4,48 +4,48 @@
         "name": "札幌会場",
         "representative": "組合長 佐藤光",
         "url": "#",
-        "x": 23,
-        "y": 60
+        "x": 21,
+        "y": 57.5
     },
     {
         "id": "otaru",
         "name": "小樽会場",
         "representative": "組合長（2名体制）",
         "url": "#",
-        "x": 18.5,
-        "y": 56
+        "x": 17,
+        "y": 53.5
     },
     {
         "id": "asahikawa",
         "name": "旭川会場",
         "representative": "組合長 ── ──",
         "url": "#",
-        "x": 38,
-        "y": 45
+        "x": 37,
+        "y": 42
     },
     {
         "id": "hakodate",
         "name": "函館会場",
         "representative": "組合長 ── ──",
         "url": "#",
-        "x": 14,
-        "y": 74
+        "x": 13.5,
+        "y": 71
     },
     {
         "id": "kushiro",
         "name": "釧路会場",
         "representative": "組合長 ── ──",
         "url": "#",
-        "x": 50,
-        "y": 62
+        "x": 52,
+        "y": 55
     },
     {
         "id": "obihiro",
         "name": "帯広会場",
         "representative": "直営運営",
         "url": "#",
-        "x": 39,
-        "y": 62
+        "x": 42,
+        "y": 58
     },
     {
         "id": "kitami",
@@ -53,14 +53,14 @@
         "representative": "組合長 ── ──",
         "url": "#",
         "x": 50,
-        "y": 38
+        "y": 40
     },
     {
         "id": "tomakomai",
         "name": "苫小牧会場",
         "representative": "組合長 和泉",
         "url": "#",
-        "x": 28,
-        "y": 64
+        "x": 27,
+        "y": 61.5
     }
 ]

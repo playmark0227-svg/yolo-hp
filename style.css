@@ -474,6 +474,9 @@ body::before {
     border-radius: 4px;
     box-shadow: 0 4px 20px rgba(0,0,0,.04);
 }
+.hokkaido-map-stage {
+    position: relative;   /* ピン座標(%)の基準を画像自身にする */
+}
 .hokkaido-base {
     width: 100%;
     height: auto;

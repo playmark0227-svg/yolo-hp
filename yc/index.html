@@ -132,13 +132,16 @@
 
                 <div class="map-wrap">
                     <div class="hokkaido-map-container">
-                        <img src="../hokkaido-prefecture_shima_map_3D_outline.png" alt="北海道全8拠点の会場マップ" class="hokkaido-base" width="1000" height="1000" loading="lazy" decoding="async">
-                        <!-- venue ピンは script.js が venues.json から動的生成 -->
-                        <div class="venue-tooltip" id="venueTooltip" aria-hidden="true">
-                            <div class="tt__inner">
-                                <span class="tt__venue"></span>
-                                <span class="tt__rep"></span>
-                                <span class="tt__cta">代表企業HPへ →</span>
+                        <!-- stage = 画像と同サイズの基準枠。ピン座標(%)は画像に対する位置になる -->
+                        <div class="hokkaido-map-stage" style="position:relative">
+                            <img src="../hokkaido-prefecture_shima_map_3D_outline.png" alt="北海道全8拠点の会場マップ" class="hokkaido-base" width="1000" height="1000" loading="lazy" decoding="async">
+                            <!-- venue ピンは script.js が venues.json から動的生成 -->
+                            <div class="venue-tooltip" id="venueTooltip" aria-hidden="true">
+                                <div class="tt__inner">
+                                    <span class="tt__venue"></span>
+                                    <span class="tt__rep"></span>
+                                    <span class="tt__cta">代表企業HPへ →</span>
+                                </div>
                             </div>
                         </div>
                     </div>
