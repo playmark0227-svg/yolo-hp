@@ -7,14 +7,14 @@
 // ローカル file:// プレビュー用に、fetch 失敗時は下記 FALLBACK_VENUES を使う。
 
 const FALLBACK_VENUES = [
-    { id: 'sapporo',   name: '札幌会場',   representative: '組合長 佐藤光',      url: '#', x: 21,   y: 57.5 },
-    { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#', x: 17, y: 53.5 },
-    { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#', x: 37,   y: 42 },
-    { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#', x: 13.5,   y: 71 },
-    { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#', x: 52,   y: 55 },
-    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#', x: 42,   y: 58 },
-    { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#', x: 50,   y: 40 },
-    { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#', x: 27,   y: 61.5 },
+    { id: 'sapporo',   name: '札幌会場',   representative: '組合長 佐藤光',      url: '#chief-sapporo', x: 21,   y: 57.5 },
+    { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#chief-otaru', x: 17, y: 53.5 },
+    { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#chief-asahikawa', x: 37,   y: 42 },
+    { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#chief-hakodate', x: 13.5,   y: 71 },
+    { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#chief-kushiro', x: 52,   y: 55 },
+    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#chief-obihiro', x: 42,   y: 58 },
+    { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#chief-kitami', x: 50,   y: 40 },
+    { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#chief-tomakomai', x: 27,   y: 61.5 },
 ];
 
 // document.currentScript はパース時のみ参照可。トップ用 / サブページ用どちらでも
@@ -108,18 +108,41 @@ function initMap() {
         // キーボード操作（Tabでフォーカス）でもツールチップを表示
         pin.addEventListener('focus', () => { showTip(); placeTipAtPin(pin, tip, wrap); });
         pin.addEventListener('blur', () => tip.classList.remove('is-visible'));
+        // クリックで該当会場カードへスクロール（href の #chief-xxx は CSS の scroll-behavior:smooth が処理）＋ハイライト
+        pin.addEventListener('click', () => {
+            tip.classList.remove('is-visible');
+            const href = pin.getAttribute('href') || '';
+            if (href.startsWith('#')) highlightVenueCard(href.slice(1));
+        });
     });
 
-    // venue-list があれば JSON データから再生成
+    // venue-list があれば JSON データから再生成（各行も会場カードへのリンクに）
     const list = document.querySelector('.venue-list ul');
     if (list) {
         list.innerHTML = '';
         VENUES.forEach((v, i) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span class="vno">${String(i + 1).padStart(2, '0')}</span><span class="vname">${v.name}</span><span class="vrep">${v.representative}</span>`;
+            const anchor = (v.url && v.url.startsWith('#')) ? v.url : ('#chief-' + v.id);
+            li.innerHTML = `<a href="${anchor}" class="venue-list__link"><span class="vno">${String(i + 1).padStart(2, '0')}</span><span class="vname">${v.name}</span><span class="vrep">${v.representative}</span></a>`;
+            li.querySelector('a').addEventListener('click', () => highlightVenueCard(anchor.slice(1)));
             list.appendChild(li);
         });
     }
+
+    // 直接 /yc/#chief-xxx で開かれた場合もハイライト
+    if (location.hash && location.hash.startsWith('#chief-')) {
+        setTimeout(() => highlightVenueCard(location.hash.slice(1)), 400);
+    }
+}
+
+// 会場カードを一瞬ハイライト（どのカードに飛んだか分かるように）
+function highlightVenueCard(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('is-target');
+    void el.offsetWidth;       // アニメーション再スタート用にリフロー強制
+    el.classList.add('is-target');
+    setTimeout(() => el.classList.remove('is-target'), 2000);
 }
 
 function placeTip(e, tip, wrap) {
