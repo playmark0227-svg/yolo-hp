@@ -11,9 +11,7 @@ const FALLBACK_VENUES = [
     { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#chief-otaru', x: 17, y: 53.5 },
     { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#chief-asahikawa', x: 37,   y: 42 },
     { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#chief-hakodate', x: 13.5,   y: 71 },
-    { id: 'kushiro',   name: '釧路会場',   representative: '組合長 ── ──',      url: '#chief-kushiro', x: 52,   y: 55 },
     { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#chief-obihiro', x: 42,   y: 58 },
-    { id: 'kitami',    name: '北見会場',   representative: '組合長 ── ──',      url: '#chief-kitami', x: 50,   y: 40 },
     { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#chief-tomakomai', x: 27,   y: 61.5 },
 ];
 
@@ -214,7 +212,7 @@ function initScrollUI() {
 // ---- scroll reveal ----
 function initReveal() {
     const targets = document.querySelectorAll(
-        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .cta-band__inner, .intro-band__inner, .page-hero__inner, .social-cta__inner, .coming-soon__inner, .chief-card, .chiefs-note'
+        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .cta-band__inner, .intro-band__inner, .page-hero__inner, .social-cta__inner, .coming-soon__inner, .chief-card, .chiefs-note, .fc-recruit__inner'
     );
     targets.forEach(el => el.classList.add('reveal'));
 

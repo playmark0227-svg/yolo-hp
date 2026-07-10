@@ -32,28 +32,12 @@
         "y": 71
     },
     {
-        "id": "kushiro",
-        "name": "釧路会場",
-        "representative": "組合長 ── ──",
-        "url": "#chief-kushiro",
-        "x": 52,
-        "y": 55
-    },
-    {
         "id": "obihiro",
         "name": "帯広会場",
         "representative": "直営運営",
         "url": "#chief-obihiro",
         "x": 42,
         "y": 58
-    },
-    {
-        "id": "kitami",
-        "name": "北見会場",
-        "representative": "組合長 ── ──",
-        "url": "#chief-kitami",
-        "x": 50,
-        "y": 40
     },
     {
         "id": "tomakomai",

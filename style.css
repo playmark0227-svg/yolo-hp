@@ -185,31 +185,22 @@ body::before {
 }
 .hero__panel::before {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(31, 39, 66, .82), rgba(19, 26, 49, .9));
+    background: linear-gradient(160deg, rgba(19, 26, 49, .82) 0%, rgba(19, 26, 49, .48) 55%, rgba(19, 26, 49, .78) 100%);
     z-index: 1;
     transition: opacity .5s;
 }
-.hero__panel--left {
-    background: linear-gradient(135deg, #2a3358 0%, #1f2742 60%, #131a31 100%);
+.hero__panel { background: var(--ink-deep); }
+.hero__panel-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 1.2s ease;
 }
-.hero__panel--left::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-        radial-gradient(circle at 18% 35%, rgba(47, 122, 81, .35), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(200, 169, 88, .18), transparent 50%);
-    z-index: 1;
-}
-.hero__panel--right {
-    background: linear-gradient(135deg, #28543b 0%, #2f7a51 50%, #1d5236 100%);
-}
-.hero__panel--right::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-        radial-gradient(circle at 70% 30%, rgba(200, 169, 88, .25), transparent 45%),
-        radial-gradient(circle at 20% 75%, rgba(255, 255, 255, .1), transparent 50%);
-    z-index: 1;
-}
-.hero__panel:hover::before { opacity: .85; }
+.hero__panel--left  .hero__panel-photo { object-position: center 28%; }
+.hero__panel--right .hero__panel-photo { object-position: center 24%; }
+.hero__panel:hover .hero__panel-photo { transform: scale(1.035); }
+.hero__panel:hover::before { opacity: .88; }
 .hero__panel-overlay {
     position: relative; z-index: 2;
     height: 100%;
@@ -1229,7 +1220,7 @@ body::before {
     top: 0; left: 0;
     height: 3px;
     width: 0%;
-    background: linear-gradient(90deg, var(--matcha) 0%, var(--gold) 50%, var(--vermilion) 100%);
+    background: var(--gold);
     z-index: 1000;
     transition: width .1s linear;
     box-shadow: 0 0 8px rgba(200, 169, 88, .4);
@@ -1359,29 +1350,6 @@ body::before {
     border-color: var(--gold);
 }
 
-/* ============================================================
-   HERO PANELS — japanese pattern overlay
-   ============================================================ */
-.hero__panel--left .hero__panel-overlay::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><g fill='none' stroke='%23c8a958' stroke-width='1' opacity='0.18'><path d='M0,50 Q25,20 50,50 T100,50'/><path d='M0,30 Q25,0 50,30 T100,30'/><path d='M0,70 Q25,40 50,70 T100,70'/></g></svg>");
-    background-size: 180px 180px;
-    background-repeat: repeat;
-    pointer-events: none;
-}
-.hero__panel--right .hero__panel-overlay::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23c8a958' stroke-width='1' opacity='0.18'><path d='M40,0 L40,80 M0,40 L80,40 M0,0 L80,80 M80,0 L0,80'/></g></svg>");
-    background-size: 100px 100px;
-    background-repeat: repeat;
-    pointer-events: none;
-}
 .hero__panel-overlay > * { position: relative; z-index: 1; }
 
 /* ============================================================
@@ -2352,6 +2320,170 @@ img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグルー
 .chief-card--direct .chief-card__venue { background: var(--matcha-deep); }
 .chief-card--direct .chief-card__status { color: var(--matcha-deep); }
 
+/* ---- 次の組合長 募集カード（FC導線） ---- */
+.chief-card--recruit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 220px;
+    padding: 34px 26px;
+    background: var(--ink);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform .35s, box-shadow .35s, background .35s;
+}
+.chief-card--recruit:hover {
+    background: var(--ink-deep);
+    box-shadow: 0 14px 30px rgba(19, 26, 49, .35);
+    opacity: 1;
+}
+.chief-card--recruit .chief-card__plus {
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-bottom: 16px;
+    transition: transform .35s;
+}
+.chief-card--recruit:hover .chief-card__plus { transform: rotate(90deg); }
+.chief-card--recruit .chief-card__venue {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(200, 169, 88, .5);
+    border-radius: 4px;
+    margin-bottom: 14px;
+}
+.chief-card--recruit .chief-card__status {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .1em;
+    margin-bottom: 8px;
+}
+.chief-card--recruit .chief-card__note {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, .75);
+    letter-spacing: .04em;
+}
+.chief-card--recruit .chief-card__more {
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--gold);
+    font-family: var(--serif);
+}
+
+/* ============================================================
+   FC RECRUIT — 組合長募集（あなたの街に、ＹＣを。）
+   ============================================================ */
+.fc-recruit {
+    background:
+        radial-gradient(circle at 12% 20%, rgba(47, 122, 81, .18), transparent 45%),
+        radial-gradient(circle at 88% 85%, rgba(200, 169, 88, .14), transparent 45%),
+        linear-gradient(160deg, #1f2742 0%, #131a31 100%);
+    color: #fff;
+    padding: 96px 0 104px;
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+}
+.fc-recruit__inner { max-width: 920px; margin: 0 auto; text-align: center; }
+.fc-recruit__eyebrow {
+    font-family: var(--english);
+    font-size: 1.2rem;
+    letter-spacing: .5em;
+    color: var(--gold);
+    margin-bottom: 22px;
+    font-weight: 600;
+}
+.fc-recruit__title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 4.6rem);
+    font-weight: 700;
+    letter-spacing: .14em;
+    margin-bottom: 26px;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, .3);
+}
+.fc-recruit__lead {
+    font-size: 1.55rem;
+    line-height: 2.1;
+    color: rgba(255, 255, 255, .88);
+    margin-bottom: 52px;
+    letter-spacing: .04em;
+}
+.fc-recruit__lead strong { color: var(--gold); font-family: var(--serif); }
+.fc-recruit__points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 56px;
+    text-align: left;
+}
+.fc-point {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(200, 169, 88, .35);
+    border-radius: 8px;
+    padding: 28px 24px;
+    transition: background .3s, transform .3s;
+}
+.fc-point:hover { background: rgba(255, 255, 255, .09); transform: translateY(-4px); }
+.fc-point__no {
+    font-family: var(--english);
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: .25em;
+    display: block;
+    margin-bottom: 10px;
+}
+.fc-point__title {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    margin-bottom: 12px;
+    color: #fff;
+}
+.fc-point__desc { font-size: 1.32rem; line-height: 1.95; color: rgba(255, 255, 255, .82); }
+.fc-recruit__cta {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.fc-recruit__btn {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 16px 42px;
+    border-radius: 40px;
+    transition: transform .3s, box-shadow .3s, background .3s;
+}
+.fc-recruit__btn--line {
+    background: #06C755;
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(6, 199, 85, .35);
+}
+.fc-recruit__btn--line:hover { background: #05a948; transform: translateY(-3px); opacity: 1; }
+.fc-recruit__btn--form {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .6);
+}
+.fc-recruit__btn--form:hover { background: #fff; color: var(--ink); opacity: 1; transform: translateY(-3px); }
+
+@media (max-width: 800px) {
+    .fc-recruit__points { grid-template-columns: 1fr; }
+    .fc-recruit { padding: 72px 0 80px; }
+}
+
 /* ---- 会場一覧を各カードへのリンクに ---- */
 .venue-list li { display: block; }
 .venue-list__link {
@@ -2403,7 +2535,6 @@ img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグルー
     padding: 0 6px 2px 0;
 }
 .chief-card--sapporo .chief-card__catch { color: #3c4450; letter-spacing: .14em; }
-.chief-card--sapporo .chief-card__catch::before { content: "✎ "; color: #2fa05a; }
 .chief-card--sapporo .chief-card__photo {
     border-left: 2px solid #2b313e;
     border-radius: 0 8px 8px 0;
@@ -2444,7 +2575,6 @@ img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグルー
 .chief-card--tomakomai .chief-card__role { color: #8a6f4d; }
 .chief-card--tomakomai .chief-card__name { color: #4a3d2c; }
 .chief-card--tomakomai .chief-card__catch { color: #6d5c42; }
-.chief-card--tomakomai .chief-card__catch::before { content: "🌿 "; font-size: .9em; }
 
 /* ---- ② 小樽A: オレンジパーカー×燃えるハート → ビビッド・ポップ ---- */
 .chief-card--otaru-a {
@@ -2474,7 +2604,6 @@ img[src*="royal-gathering"] { object-position: center 30%; }  /* 奥のグルー
 .chief-card--otaru-a .chief-card__name { color: #7c3508; }
 .chief-card--otaru-a .chief-card__catch { color: #a1440e; font-weight: 700; }
 .chief-card--otaru-a .chief-card__catch::before { content: "♥ "; color: #e8321b; }
-.chief-card--otaru-a .chief-card__catch::after { content: " ♥"; color: #e8321b; }
 
 /* ---- ③ 函館: 薄暗いバー → ノワール・ネオンブルー ---- */
 .chief-card--hakodate {
