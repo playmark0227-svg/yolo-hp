@@ -26,6 +26,29 @@ const SCRIPT_BASE = (() => {
 
 let VENUES = FALLBACK_VENUES;
 
+// モーション減退設定（酔いやすいユーザー配慮）— JS駆動アニメはこれ広で無効化
+const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---- オープニング演出（金のYOLOマーク → 幕が上がる / セッション初回のみ） ----
+(function initIntroVeil() {
+    if (REDUCED_MOTION) return;
+    try {
+        if (sessionStorage.getItem('yoloIntroSeen')) return;
+        sessionStorage.setItem('yoloIntroSeen', '1');
+    } catch (e) { return; }
+    const veil = document.createElement('div');
+    veil.className = 'intro-veil';
+    veil.setAttribute('aria-hidden', 'true');
+    const mark = document.createElement('img');
+    mark.src = SCRIPT_BASE + 'assets/photos/logo/yolo-one-gold.png';
+    mark.alt = '';
+    veil.appendChild(mark);
+    document.body.appendChild(veil);
+    setTimeout(() => veil.classList.add('is-done'), 1350);
+    veil.addEventListener('transitionend', () => veil.remove());
+    setTimeout(() => veil.remove(), 3000);  // 保険
+})();
+
 async function loadVenues() {
     try {
         const res = await fetch(SCRIPT_BASE + 'src/data/venues.json', { cache: 'no-cache' });
@@ -43,8 +66,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     initMobileNav();
     initContactForm();
     initSmoothScroll();
+    initCharSplit();
     initReveal();
     initScrollUI();
+    initParallax();
 
     // venues をロードしてから地図を初期化
     VENUES = await loadVenues();
@@ -76,17 +101,30 @@ function initMap() {
     // 既存ピンがあればクリア（ホットリロード時等）
     wrap.querySelectorAll('.venue-pin').forEach(p => p.remove());
 
-    VENUES.forEach(v => {
+    VENUES.forEach((v, i) => {
         const a = document.createElement('a');
         a.className = 'venue-pin';
         a.dataset.venue = v.id;
         a.href = v.url || '#';
         a.style.left = v.x + '%';
         a.style.top  = v.y + '%';
+        a.style.setProperty('--pd', (i * 0.13) + 's');   // ドロップの時間差
         a.setAttribute('aria-label', `${v.name}（${v.representative}）`);
         a.innerHTML = `<span class="pin__dot"></span><span class="pin__label">${v.name.replace('会場','')}</span>`;
         wrap.insertBefore(a, tip);
     });
+
+    // 地図が見えたらピンを順番に落とす
+    if (!REDUCED_MOTION && 'IntersectionObserver' in window) {
+        const pinIO = new IntersectionObserver((entries) => {
+            entries.forEach(en => {
+                if (en.isIntersecting) { wrap.classList.add('pins-ready'); pinIO.disconnect(); }
+            });
+        }, { threshold: 0.25 });
+        pinIO.observe(wrap);
+    } else {
+        wrap.classList.add('pins-ready');
+    }
 
     const pins = wrap.querySelectorAll('.venue-pin');
 
@@ -196,6 +234,7 @@ function initSmoothScroll() {
 function initScrollUI() {
     const bar = document.getElementById('scrollProgress');
     const btn = document.getElementById('backToTop');
+    const header = document.getElementById('siteHeader');
 
     const onScroll = () => {
         const h = document.documentElement;
@@ -203,6 +242,7 @@ function initScrollUI() {
         const pct = Math.min(100, Math.max(0, (h.scrollTop / max) * 100));
         if (bar) bar.style.width = pct + '%';
         if (btn) btn.classList.toggle('is-visible', h.scrollTop > 600);
+        if (header) header.classList.toggle('is-scrolled', h.scrollTop > 64);
     };
 
     onScroll();
@@ -212,15 +252,84 @@ function initScrollUI() {
 // ---- scroll reveal ----
 function initReveal() {
     const targets = document.querySelectorAll(
-        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .cta-band__inner, .intro-band__inner, .page-hero__inner, .social-cta__inner, .coming-soon__inner, .chief-card, .chiefs-note, .fc-recruit__inner'
+        '.section-title, .section-sub, .yc__intro-text, .yc__intro-stats, .map-wrap, .service-card, .about__grid, .member-card, .contact__grid, .slogan-band__lead, .slogan-band__sub, .slogan-band__eyebrow, .cta-band__inner, .intro-band__inner, .page-hero__inner, .social-cta__inner, .coming-soon__inner, .chief-card, .chiefs-note, .fc-recruit__inner, .fc-point, .feature-card, .gallery-item, .stat, .marquee'
     );
     targets.forEach(el => el.classList.add('reveal'));
 
+    // グリッド内の兄弟は 1枚ずつ時間差で出す（表示後はホバーを妨げないよう解除）
+    const groups = document.querySelectorAll(
+        '.service-grid, .photo-gallery, .chiefs-grid, .feature-grid, .fc-recruit__points, .yc__intro-stats, .team-grid'
+    );
+    groups.forEach(g => {
+        [...g.children].forEach((c, i) => {
+            if (c.classList.contains('reveal')) {
+                c.style.transitionDelay = Math.min(i * 0.1, 0.6) + 's';
+            }
+        });
+    });
+
     const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('is-in');
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                el.classList.add('is-in');
+                io.unobserve(el);
+                // スタッガー完了後にディレイを解除（ホバーの transform を即応にする）
+                if (el.style.transitionDelay) {
+                    setTimeout(() => { el.style.transitionDelay = ''; }, 1800);
+                }
+            }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     targets.forEach(el => io.observe(el));
+}
+
+// ---- 一文字ずつ出現させたい要素を span 分割 ----
+function initCharSplit() {
+    if (REDUCED_MOTION) return;
+    document.querySelectorAll('.slogan-band__lead, .fc-recruit__title').forEach(el => {
+        el.classList.add('char-split');
+        let ci = 0;
+        const walk = (node) => {
+            [...node.childNodes].forEach(child => {
+                if (child.nodeType === Node.TEXT_NODE) {
+                    const frag = document.createDocumentFragment();
+                    for (const ch of child.textContent) {
+                        if (ch.trim() === '') { frag.appendChild(document.createTextNode(ch)); continue; }
+                        const sp = document.createElement('span');
+                        sp.className = 'ch';
+                        sp.style.setProperty('--ci', ci++);
+                        sp.textContent = ch;
+                        frag.appendChild(sp);
+                    }
+                    child.replaceWith(frag);
+                } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'BR') {
+                    walk(child);
+                }
+            });
+        };
+        walk(el);
+    });
+}
+
+// ---- サブページヒーローのパララックス ----
+function initParallax() {
+    if (REDUCED_MOTION) return;
+    const els = [...document.querySelectorAll('.page-hero__bg, .class-hero__bg')];
+    if (!els.length) return;
+    let ticking = false;
+    const update = () => {
+        ticking = false;
+        els.forEach(el => {
+            const box = el.parentElement.getBoundingClientRect();
+            if (box.bottom > 0 && box.top < window.innerHeight) {
+                el.style.transform = 'translateY(' + (box.top * -0.16).toFixed(1) + 'px) scale(1.12)';
+            }
+        });
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
 }
