@@ -7,12 +7,12 @@
 // ローカル file:// プレビュー用に、fetch 失敗時は下記 FALLBACK_VENUES を使う。
 
 const FALLBACK_VENUES = [
-    { id: 'sapporo',   name: '札幌会場',   representative: '組合長 佐藤光',      url: '#chief-sapporo', x: 21,   y: 57.5 },
-    { id: 'otaru',     name: '小樽会場',   representative: '組合長（2名体制）',  url: '#chief-otaru', x: 17, y: 53.5 },
-    { id: 'asahikawa', name: '旭川会場',   representative: '組合長 ── ──',      url: '#chief-asahikawa', x: 37,   y: 42 },
-    { id: 'hakodate',  name: '函館会場',   representative: '組合長 ── ──',      url: '#chief-hakodate', x: 13.5,   y: 71 },
-    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',           url: '#chief-obihiro', x: 42,   y: 58 },
-    { id: 'tomakomai', name: '苫小牧会場', representative: '組合長 和泉',        url: '#chief-tomakomai', x: 27,   y: 61.5 },
+    { id: 'sapporo',   name: '札幌会場',   representative: '組合運営',              url: '#chief-sapporo',   instagram: 'https://www.instagram.com/sapporo.yc',   x: 21,   y: 57.5 },
+    { id: 'otaru',     name: '小樽会場',   representative: '組合運営',   url: '#chief-otaru',     instagram: 'https://www.instagram.com/yc.otaru',     x: 17,   y: 53.5 },
+    { id: 'asahikawa', name: '旭川会場',   representative: '組合運営',            url: '#chief-asahikawa', instagram: 'https://www.instagram.com/asahikawa.yc', x: 37,   y: 42 },
+    { id: 'hakodate',  name: '函館会場',   representative: '組合運営',            url: '#chief-hakodate',  instagram: 'https://www.instagram.com/yc.hakodate',  x: 13.5, y: 71 },
+    { id: 'obihiro',   name: '帯広会場',   representative: '直営運営',                   url: '#chief-obihiro',   instagram: 'https://www.instagram.com/yc.obihiro',   x: 42,   y: 58 },
+    { id: 'tomakomai', name: '苫小牧会場', representative: '組合運営',                url: '#chief-tomakomai', instagram: 'https://www.instagram.com/yc.tomakomai', x: 27,   y: 61.5 },
 ];
 
 // document.currentScript はパース時のみ参照可。トップ用 / サブページ用どちらでも
@@ -267,6 +267,19 @@ function initReveal() {
             }
         });
     });
+
+    // 保険: IntersectionObserver が使えない/発火しない環境でもコンテンツを必ず表示する
+    if (!('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('is-in'));
+        return;
+    }
+    // 万一 observer が動かなくても 3秒後には全て表示（コンテンツが消えたままになるのを防ぐ）
+    setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-in)').forEach(el => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight * 1.5) el.classList.add('is-in');
+        });
+    }, 3000);
 
     const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
