@@ -3116,33 +3116,38 @@ body { animation: pageIn .7s ease; }
 }
 
 /* ============================================================
-   MAP ピンラベル: スマホで重なって消える問題の修正
+   MAP ピンラベル ── 地図の実表示幅に連動させて重なりを防ぐ
+   ラベルは固定pxだと地図が小さいときに密集地(札幌/小樽/苫小牧)で衝突するため、
+   コンテナ幅に比例するサイズ(cqw)にし、近接会場は方向をずらして逃がす。
    ============================================================ */
-/* ラベルは他ピンの上に出す。ホバー/フォーカス中のピンは最前面へ */
+.hokkaido-map-stage { container-type: inline-size; }
+
 .venue-pin { z-index: 5; }
 .venue-pin:hover, .venue-pin:focus-visible { z-index: 30; }
+
+.pin__dot {
+    width: clamp(9px, 3.4cqw, 18px);
+    height: clamp(9px, 3.4cqw, 18px);
+    border-width: clamp(2px, .7cqw, 3px);
+    box-shadow: 0 0 0 clamp(2px, .7cqw, 3px) var(--vermilion), 0 3px 7px rgba(0,0,0,.3);
+}
 .pin__label {
     z-index: 6;
+    font-size: clamp(8.5px, 2.7cqw, 12px);
+    padding: clamp(1px, .5cqw, 3px) clamp(4px, 1.6cqw, 10px);
+    letter-spacing: .02em;
+    top: calc(100% + clamp(2px, .8cqw, 8px));
     box-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
 
-@media (max-width: 700px) {
-    /* ピン自体を小さくして密集地（札幌・小樽・苫小牧）の衝突を減らす */
-    .pin__dot { width: 13px; height: 13px; border-width: 2px; box-shadow: 0 0 0 2px var(--vermilion), 0 3px 6px rgba(0,0,0,.3); }
-    .pin__label {
-        font-size: .92rem;
-        padding: 2px 6px;
-        letter-spacing: .02em;
-        top: calc(100% + 4px);
-    }
-    /* 近接する会場はラベルを上下・左右にずらして重なりを回避 */
-    .venue-pin[data-venue="sapporo"]   .pin__label { top: auto; bottom: calc(100% + 4px); }
-    .venue-pin[data-venue="otaru"]     .pin__label { transform: translateX(-88%); }
-    .venue-pin[data-venue="tomakomai"] .pin__label { transform: translateX(-14%); }
-    /* 旭川(37,42)と帯広(42,58)は縦に近い → 帯広を右下にオフセット */
-    .venue-pin[data-venue="obihiro"]   .pin__label { transform: translateX(-6%); }
-    .venue-pin[data-venue="asahikawa"] .pin__label { top: auto; bottom: calc(100% + 4px); }
-}
+/* 近接する会場はラベルの出る向きをずらして衝突を回避
+   （札幌・小樽・苫小牧は石狩湾周辺に密集、旭川と帯広は縦に近い） */
+.venue-pin[data-venue="otaru"]     .pin__label { transform: translateX(-92%); }
+.venue-pin[data-venue="sapporo"]   .pin__label { top: auto; bottom: calc(100% + clamp(2px, .8cqw, 8px)); }
+.venue-pin[data-venue="tomakomai"] .pin__label { transform: translateX(-8%); }
+.venue-pin[data-venue="asahikawa"] .pin__label { top: auto; bottom: calc(100% + clamp(2px, .8cqw, 8px)); }
+.venue-pin[data-venue="obihiro"]   .pin__label { transform: translateX(-4%); }
+
 
 /* ============================================================
    役員カード: スマホで写真が出ない問題の修正
@@ -3231,3 +3236,177 @@ body { animation: pageIn .7s ease; }
     margin-top: 48px; text-align: right;
     font-size: 1.25rem; color: var(--text-mute); letter-spacing: .06em;
 }
+
+/* ============================================================
+   RESPONSIVE 総仕上げ
+   既存の指定を上書きして、どの画面幅でも破綻しないよう整える。
+   設計: ~479 スマホ / 480-767 大きめスマホ / 768-1199 タブレット / 1200+ デスクトップ
+   ============================================================ */
+
+/* ---- 余白と最小文字サイズの底上げ（全幅共通） ---- */
+:root { --gutter: 24px; }
+.container { padding-left: var(--gutter); padding-right: var(--gutter); }
+
+@media (max-width: 400px) { :root { --gutter: 16px; } }
+@media (min-width: 1400px) { :root { --gutter: 32px; } }
+
+/* 小さすぎる文字の下限を引き上げ（可読性） */
+.site-header__sub { font-size: 1.2rem; }
+.breadcrumb__inner { font-size: 1.25rem; }
+.back-to-top__label { font-size: 1.05rem; }
+.slogan-band__eyebrow,
+.intro-band__eyebrow,
+.social-cta__eyebrow,
+.coming-soon__eyebrow,
+.fc-recruit__eyebrow { font-size: 1.2rem; }
+.form__row label span { font-size: 1.1rem; }
+.chief-card__en { user-select: none; }
+
+/* ============================================================
+   TABLET（768〜1199px）── これまで1カラムで間延びしていた帯を解消
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 1199px) {
+    /* 事業カード・強み・組合長は2列に */
+    .service-grid,
+    .chiefs-grid,
+    .feature-grid,
+    .fc-recruit__points { grid-template-columns: 1fr 1fr; }
+
+    /* 3つ組の最後の1枚は中央に寄せて据わりを良くする */
+    .feature-grid > :last-child:nth-child(odd),
+    .fc-recruit__points > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 11px);
+        margin: 0 auto;
+    }
+
+    /* お問い合わせ・フッターも横並びに戻す */
+    .contact__grid { grid-template-columns: 1fr 1.25fr; gap: 36px; }
+    .site-footer__inner { grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+
+    /* 地図と会場一覧を横並びに（縦積みだと間延びするため） */
+    .map-wrap { grid-template-columns: 1.5fr 1fr; gap: 32px; align-items: start; }
+
+    /* YC紹介文と数値も横並び */
+    .yc__intro { grid-template-columns: 1.5fr 1fr; gap: 40px; }
+
+    /* ギャラリーは2列（3列は1枚が細くなりすぎる） */
+    .photo-gallery { grid-template-columns: 1fr 1fr; }
+    .gallery-item--wide { grid-column: span 2; aspect-ratio: 16 / 7; }
+
+    /* SNSボタンは横2つ */
+    .social-cta__buttons { grid-template-columns: 1fr 1fr; }
+    .social-cta__buttons--single { grid-template-columns: minmax(0, 420px); }
+
+    /* 小樽の2名カードは横並びのまま見せる */
+    .chief-card--duo { grid-column: 1 / -1; }
+    .chief-card--duo .chief-card__duo-grid { grid-template-columns: 1fr 1fr; }
+    .chief-duo__photo { max-width: 190px; }
+
+    /* 札幌・帯広のワイドカードは全幅で */
+    .chief-card--sapporo { grid-column: 1 / -1; grid-template-columns: 1fr 42%; }
+
+    /* 役員カードは横並び */
+    .team-solo .member-card { grid-template-columns: 40% 1fr; }
+    .team-solo .member-card__photo { aspect-ratio: auto; height: 100%; min-height: 320px; }
+
+    /* ヒーローは左右分割を維持しつつ高さを抑える */
+    .hero__grid { grid-template-columns: 1fr 1fr; min-height: 460px; }
+    .hero__panel-overlay { padding: 56px 6%; }
+    .hero__panel-title { font-size: clamp(3.2rem, 5vw, 4.6rem); }
+}
+
+/* ============================================================
+   大きめスマホ（480〜767px）
+   ============================================================ */
+@media (min-width: 480px) and (max-width: 767px) {
+    .photo-gallery { grid-template-columns: 1fr 1fr; }
+    .gallery-item--wide { grid-column: span 2; aspect-ratio: 16 / 8; }
+    .yc__intro-stats { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ============================================================
+   スマホ（〜479px）── 1カラムに寄せて写真を大きく見せる
+   ============================================================ */
+@media (max-width: 479px) {
+    /* ギャラリーの2列は1枚が小さすぎるため1列に */
+    .photo-gallery { grid-template-columns: 1fr; gap: 12px; }
+    .gallery-item { aspect-ratio: 4 / 3; }
+    .gallery-item--wide { grid-column: span 1; aspect-ratio: 4 / 3; }
+    /* キャプションは常時表示（ホバーが無いため） */
+    .gallery-item__cap { opacity: 1; transform: translateY(0); font-size: 1.15rem; padding: 16px 12px 9px; }
+
+    .yc__intro-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero__panel-overlay { padding: 52px 7%; }
+    .hero__panel-title { font-size: clamp(3.2rem, 11vw, 4.4rem); }
+    .hero__panel-lead { font-size: 1.4rem; }
+    .hero__strap-inner { gap: 8px; }
+    .hero__strap-text { font-size: 1.3rem; }
+
+    /* セクションの上下余白を詰めて間延びを防ぐ */
+    .services, .about, .team, .contact, .chiefs, .features,
+    .yc-gallery-section, .class-section { padding-top: 64px; padding-bottom: 64px; }
+    .intro-band { padding: 56px 0 60px; }
+    .fc-recruit { padding: 64px 0 68px; }
+
+    /* 見出し・本文のサイズ調整 */
+    .intro-band__lead { font-size: 1.55rem; line-height: 1.9; }
+    .intro-band__sub { font-size: 1.32rem; }
+    .slogan-band__lead { font-size: clamp(2.2rem, 8.5vw, 3rem); }
+    .slogan-band__sub { font-size: 1.3rem; }
+    .class-lead-copy, .fc-recruit__lead { font-size: 1.35rem; line-height: 1.95; }
+    .feature-card__desc, .fc-point__desc { font-size: 1.3rem; }
+
+    /* 会社概要テーブルを縦積みにして潰れを防ぐ */
+    .company-table th, .company-table td { display: block; width: 100%; }
+    .company-table th { border-bottom: 0; padding-bottom: 2px; color: var(--matcha-deep); }
+    .company-table td { padding-top: 0; padding-left: 2px; }
+
+    /* お問い合わせ情報も縦積み */
+    .contact__info dl { grid-template-columns: 1fr; gap: 2px 0; }
+    .contact__info dt { margin-top: 10px; color: var(--matcha-deep); }
+
+    /* CTA・ボタンは横幅いっぱいで押しやすく */
+    .cta-band__btn, .back-band__btn,
+    .fc-recruit__btn { display: block; width: 100%; text-align: center; }
+    .fc-recruit__cta { flex-direction: column; gap: 12px; }
+
+    /* パンくずは折り返さず省略 */
+    .breadcrumb__inner { flex-wrap: nowrap; overflow: hidden; }
+}
+
+/* ============================================================
+   超小型（〜359px / iPhone SE 等）
+   ============================================================ */
+@media (max-width: 359px) {
+    .hero__panel-title { font-size: 3rem; }
+    .section-title { font-size: 1.9rem; }
+    .intro-band__title, .coming-soon__title { font-size: 2.1rem; }
+    .fc-recruit__title { font-size: 2.4rem; }
+    .page-hero__title { font-size: 3rem; }
+    .chief-card__name { font-size: 2.1rem; }
+    .stat__num { font-size: 2.2rem; }
+    .social-btn { padding: 16px 14px; gap: 10px; }
+    .social-btn__label { font-size: 1.3rem; }
+}
+
+/* ============================================================
+   大画面（1600px〜）── 余白が空きすぎないように
+   ============================================================ */
+@media (min-width: 1600px) {
+    :root { --max: 1320px; }
+    .hero__grid { min-height: 660px; }
+    .hero__panel-overlay { max-width: 660px; }
+}
+
+/* ---- 横向き（ランドスケープ）のスマホでヒーローが縦に伸びすぎないように ---- */
+@media (max-width: 900px) and (orientation: landscape) {
+    .hero__grid { min-height: 420px; }
+    .hero__panel { min-height: 320px; }
+    .class-hero { min-height: 100vh; }
+    .page-hero--photo { min-height: 60vh; }
+}
+
+/* ---- 画像は常に枠内に収める（はみ出し防止の保険） ---- */
+img, video, svg { max-width: 100%; }
+.marquee, .hero, .class-hero, .page-hero { max-width: 100vw; overflow-x: hidden; }
