@@ -3412,58 +3412,54 @@ img, video, svg { max-width: 100%; }
 .marquee, .hero, .class-hero, .page-hero { max-width: 100vw; overflow-x: hidden; }
 
 /* ============================================================
-   代表署名（サイン）── 挨拶文の末尾に手書き署名として置く
+   代表署名（サイン）── 挨拶文の末尾に、太い筆で署名する
    ============================================================ */
 .signature {
-    margin-top: 26px;
+    margin-top: 28px;
     padding-top: 18px;
     border-top: 1px solid var(--line);
     display: flex;
     flex-direction: column;
     align-items: flex-end;   /* 挨拶文の末尾＝右下に署名 */
-    color: var(--ink);
 }
 .signature__name {
-    font-family: 'Yuji Mai', 'Shippori Mincho', serif;
+    font-family: 'Reggae One', 'Shippori Mincho', serif;
     font-weight: 400;
-    font-size: clamp(2.6rem, 3.4vw, 3.4rem);
-    line-height: 1.15;
-    letter-spacing: .06em;
-    color: var(--ink);
+    font-size: clamp(4rem, 5vw, 5.2rem);
+    line-height: 1.08;
+    letter-spacing: .02em;
+    color: #16181f;              /* 墨色。本文の紺より濃く、インクらしく */
     margin: 0;
-    /* 手で署名した際のわずかな傾き */
-    transform: rotate(-2.2deg);
+    white-space: nowrap;
+    /* 手で署名した際の傾き */
+    transform: rotate(-3deg);
     transform-origin: right center;
-    /* 筆跡らしいわずかな滲み */
-    text-shadow: 0 1px 1px rgba(31, 39, 66, .12);
 }
-/* 署名の下に走る手書きの一筆線 */
+/* 署名の下に走る一筆の払い（右へ鋭く抜ける） */
 .signature__stroke {
-    width: clamp(150px, 62%, 230px);
+    display: block;
+    width: clamp(170px, 66%, 250px);
     height: auto;
-    margin-top: 6px;
-    margin-right: 2px;
-    color: var(--matcha-deep);
-    opacity: .62;
-    transform: rotate(-1.4deg);
+    margin-top: 4px;
+    margin-right: 4px;
+    color: #16181f;
+    opacity: .9;
+    transform: rotate(-1.6deg);
+    /* 画面に入ったら左から一気に払われる */
+    clip-path: inset(0 100% 0 0);
 }
-/* 画面に入ったら線が左から引かれる演出 */
-.signature__stroke path {
-    stroke-dasharray: 260;
-    stroke-dashoffset: 260;
+.member-card.is-in .signature__stroke,
+.reveal.is-in .signature__stroke {
+    animation: signSweep .5s cubic-bezier(.22, .7, .3, 1) .3s forwards;
 }
-.member-card.is-in .signature__stroke path,
-.reveal.is-in .signature__stroke path {
-    animation: signDraw 1.1s cubic-bezier(.4, .1, .3, 1) .35s forwards;
-}
-@keyframes signDraw { to { stroke-dashoffset: 0; } }
+@keyframes signSweep { to { clip-path: inset(0 0 0 0); } }
 
 @media (prefers-reduced-motion: reduce) {
-    .signature__stroke path { stroke-dashoffset: 0; animation: none; }
+    .signature__stroke { clip-path: inset(0 0 0 0); animation: none; }
 }
 
 @media (max-width: 479px) {
-    .signature { align-items: center; margin-top: 22px; }
-    .signature__name { font-size: 2.5rem; transform: rotate(-2deg); transform-origin: center; }
-    .signature__stroke { width: 62%; }
+    .signature { align-items: center; margin-top: 24px; }
+    .signature__name { font-size: 3.5rem; transform: rotate(-2.6deg); transform-origin: center; }
+    .signature__stroke { width: 74%; margin-right: 0; }
 }
